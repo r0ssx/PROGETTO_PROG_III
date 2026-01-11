@@ -1,0 +1,12 @@
+package Shared.Requests;
+
+public enum Request {
+    GET_PRODUCT_LIST,
+    USER_LOGIN,
+    USER_REGISTER,
+    ADMIN_LOGIN,
+    ADMIN_INSERT_PRODUCT,
+    ADMIN_RECOMMENDS,
+    ADMIN_GET_SALES,
+    USER_CHECKOUT
+}
