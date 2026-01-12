@@ -1,0 +1,7 @@
+ServerMain -> ServerThread -> CoRFacade
+CoRFacade -> CoR -> Command -> Strategy
+
+Strategy implementa le query
+Command implementa le operazioni
+CoR decide quale operazione eseguire
+CoR Facade è un punto d'ingresso per la CoR

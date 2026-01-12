@@ -39,7 +39,7 @@ public class GetProductListHandler extends AbstractRequestHandler{
     public void handleRequest(Request request, Socket socket) throws SQLException, IOException {
         System.out.println("chiamata handleRequest di GetProductListHandler");
         QueryCommand queryCommand = new ProductCatalog();
-        List<ProdottiQueryResult> result = (List<ProdottiQueryResult>) queryCommand.execute();
+        List<ProdottiQueryResult> result = (List<ProdottiQueryResult>) queryCommand.execute(null);
         DataIO dataIO = new DataIO(socket);
         dataIO.sendData(result);
 

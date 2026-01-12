@@ -89,8 +89,7 @@ public class ServerThread extends Thread {
         System.out.println(readData);
 
         Gson gson = new Gson();
-        String actualJson = gson.fromJson(readData, String.class);
-        RequestEnumAdapter requestEnumAdapter = gson.fromJson(actualJson, RequestEnumAdapter.class);
+        RequestEnumAdapter requestEnumAdapter = gson.fromJson(readData, RequestEnumAdapter.class);
         Request request = requestEnumAdapter.request;
         System.out.println("Richiesta ricevuta: " + request);
         RequestCoRFacade requestCoRFacade = RequestCoRFacade.getInstance();

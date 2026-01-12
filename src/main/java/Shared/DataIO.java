@@ -48,7 +48,6 @@ public class DataIO {
 
     /**
      * Riceve una stringa JSON dalla socket.
-     *
      * @return la stringa letta dalla socket
      * @throws IOException se si verifica un errore di I/O durante la lettura
      */

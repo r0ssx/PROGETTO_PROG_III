@@ -1,8 +1,15 @@
 package Server.RequestHandler;
 
+import Server.QueryCommand.QueryCommand;
+import Server.QueryCommand.UserLoginCommand;
+import Shared.DataIO;
+import Shared.GsonAdapters.UserLoginPacket;
 import Shared.Requests.Request;
+import com.google.gson.Gson;
 
+import java.io.IOException;
 import java.net.Socket;
+import java.sql.SQLException;
 
 /**
  * Handler concreto della Chain of Responsibility responsabile
@@ -25,13 +32,23 @@ public class UserLoginHandler extends AbstractRequestHandler {
      * Gestisce concretamente la richiesta di login dell'utente.
      * Questo metodo viene invocato solo se la richiesta è riconosciuta
      * come gestibile dall'handler corrente.
-     *
      * @param request la richiesta {@link Request#USER_LOGIN} da elaborare
      * @param socket
      */
     @Override
-    public void handleRequest(Request request, Socket socket) {
+    public void handleRequest(Request request, Socket socket) throws SQLException, IOException {
         System.out.println("chiamata handleRequest di UserLoginHandler");
+        QueryCommand queryCommand = new UserLoginCommand();
+        DataIO dataIO = new DataIO(socket);
+        String readData = dataIO.getData();
+        Gson gson = new Gson();
+        UserLoginPacket loginPacket = gson.fromJson(readData, UserLoginPacket.class);
+        String correctPassword = (String) queryCommand.execute(loginPacket.email);
 
+        if(correctPassword.equals(loginPacket.password)){
+            dataIO.sendData(true);
+        } else {
+            dataIO.sendData(false);
+        }
     }
 }
