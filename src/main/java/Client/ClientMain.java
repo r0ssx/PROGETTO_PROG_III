@@ -4,7 +4,7 @@ import Server.QueryCommand.QueryResultObject.AdminGetSalesQueryResult;
 import Shared.GsonAdapters.RequestPacket;
 import Server.QueryCommand.QueryResultObject.ProdottiQueryResult;
 import Shared.DataIO;
-import Shared.GsonAdapters.LoginPacket;
+import Shared.GsonAdapters.AuthPacket;
 import Shared.Requests.Request;
 import com.google.gson.Gson;
 
@@ -36,7 +36,7 @@ public class ClientMain {
 
             dataIO.sendData(requestEnumAdapter1);
 
-            LoginPacket packet = new LoginPacket();
+            AuthPacket packet = new AuthPacket();
             packet.id = "luca.deluca@mail.com";
             packet.password = "delulu90";
             dataIO.sendData(packet);
@@ -52,7 +52,7 @@ public class ClientMain {
 
             dataIO.sendData(requestEnumAdapter2);
 
-            LoginPacket packet1 = new LoginPacket();
+            AuthPacket packet1 = new AuthPacket();
             packet1.id = "marty_mcfly";
             packet1.password = "grande_giove85";
             dataIO.sendData(packet1);
@@ -70,6 +70,21 @@ public class ClientMain {
             String result3 = dataIO.getData();
             List<AdminGetSalesQueryResult> list1 = gson.fromJson(result3, List.class);
             System.out.println(list1);
+
+            Request request4 = Request.USER_REGISTER;
+            RequestPacket requestEnumAdapter4 = new RequestPacket();
+            requestEnumAdapter4.request = request4;
+
+            dataIO.sendData(requestEnumAdapter4);
+
+            AuthPacket packet4 = new AuthPacket();
+            packet4.id = "forzanapol11@1926.it";
+            packet4.password = "lukaku";
+            dataIO.sendData(packet4);
+
+            String result4 = dataIO.getData();
+            Boolean bool4 = gson.fromJson(result4, Boolean.class);
+            System.out.println(bool4);
 
             //chiudo la connessione
             socket.close();

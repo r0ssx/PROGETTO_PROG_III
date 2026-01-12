@@ -2,9 +2,8 @@ package Server.RequestHandler;
 
 import Server.QueryCommand.AbstractQueryCommand;
 import Server.QueryCommand.AdminLoginCommand;
-import Server.QueryStrategy.AbstractQueryStrategy;
 import Shared.DataIO;
-import Shared.GsonAdapters.LoginPacket;
+import Shared.GsonAdapters.AuthPacket;
 import Shared.Requests.Request;
 import com.google.gson.Gson;
 
@@ -44,7 +43,7 @@ public class AdminLoginHandler extends AbstractRequestHandler{
         DataIO dataIO = new DataIO(socket);
         String readData = dataIO.getData();
         Gson gson = new Gson();
-        LoginPacket loginPacket = gson.fromJson(readData, LoginPacket.class);
+        AuthPacket loginPacket = gson.fromJson(readData, AuthPacket.class);
         String correctPassword = (String) queryCommand.execute(loginPacket.id);
 
         if(correctPassword.equals(loginPacket.password)){
