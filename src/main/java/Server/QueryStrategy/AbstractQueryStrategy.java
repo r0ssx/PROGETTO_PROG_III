@@ -1,18 +1,16 @@
 package Server.QueryStrategy;
 
 import Database.SingletonDB;
-import Server.QueryCommand.QueryResultObject.QueryResultObject;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
-public abstract class QueryStrategy<Param,Res>{
+public abstract class AbstractQueryStrategy<Param,Res>{
     protected SingletonDB db;
     protected Connection connection;
 
-    public QueryStrategy(){
+    public AbstractQueryStrategy(){
         db = SingletonDB.getInstance();
     }
 

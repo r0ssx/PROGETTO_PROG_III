@@ -9,4 +9,5 @@ module com.example.progetto_prog_iii {
     opens Server.QueryCommand.QueryResultObject to com.google.gson;
     opens Shared.Requests to com.google.gson;
     opens Shared.GsonAdapters to com.google.gson;
+    opens Server.QueryCommand to com.google.gson;
 }

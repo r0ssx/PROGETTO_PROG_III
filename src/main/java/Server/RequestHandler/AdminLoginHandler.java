@@ -1,8 +1,16 @@
 package Server.RequestHandler;
 
+import Server.QueryCommand.AbstractQueryCommand;
+import Server.QueryCommand.AdminLoginCommand;
+import Server.QueryStrategy.AbstractQueryStrategy;
+import Shared.DataIO;
+import Shared.GsonAdapters.LoginPacket;
 import Shared.Requests.Request;
+import com.google.gson.Gson;
 
+import java.io.IOException;
 import java.net.Socket;
+import java.sql.SQLException;
 
 /**
  * Handler concreto della Chain of Responsibility responsabile
@@ -30,7 +38,20 @@ public class AdminLoginHandler extends AbstractRequestHandler{
      * @param socket
      */
     @Override
-    public void handleRequest(Request request, Socket socket) {
+    public void handleRequest(Request request, Socket socket) throws SQLException, IOException {
         System.out.println("chiamata handleRequest di AdminLoginHandler");
+        AbstractQueryCommand queryCommand = new AdminLoginCommand();
+        DataIO dataIO = new DataIO(socket);
+        String readData = dataIO.getData();
+        Gson gson = new Gson();
+        LoginPacket loginPacket = gson.fromJson(readData, LoginPacket.class);
+        String correctPassword = (String) queryCommand.execute(loginPacket.id);
+
+        if(correctPassword.equals(loginPacket.password)){
+            dataIO.sendData(true);
+        } else {
+            dataIO.sendData(false);
+        }
+
     }
 }

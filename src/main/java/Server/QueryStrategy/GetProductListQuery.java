@@ -1,17 +1,14 @@
 package Server.QueryStrategy;
 
-import Server.QueryCommand.ProductCatalog;
 import Server.QueryCommand.QueryResultObject.ProdottiQueryResult;
-import Server.QueryCommand.QueryResultObject.QueryResultObject;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetProductListQuery extends QueryStrategy<Void, List<ProdottiQueryResult>>{
+public class GetProductListQuery extends AbstractQueryStrategy<Void, List<ProdottiQueryResult>> {
 
     @Override
     protected ResultSet concreteQuery(Void params) throws SQLException {

@@ -1,19 +1,24 @@
 package Server.QueryCommand;
 
 import Server.QueryStrategy.AbstractQueryStrategy;
-import Server.QueryStrategy.UserLoginQuery;
+import Server.QueryStrategy.AdminLoginQuery;
 
 import java.sql.SQLException;
 
-public class UserLoginCommand extends AbstractQueryCommand<String, String> {
+public class AdminLoginCommand extends AbstractQueryCommand<String, String> {
 
-    public UserLoginCommand() throws SQLException {
+    public AdminLoginCommand() throws SQLException {
     }
 
     @Override
     public String execute(String params) throws SQLException {
-        AbstractQueryStrategy query = new UserLoginQuery();
+        AbstractQueryStrategy query = new AdminLoginQuery();
 
         return (String) query.executeQuery(params);
     }
+
+
+
+
+
 }

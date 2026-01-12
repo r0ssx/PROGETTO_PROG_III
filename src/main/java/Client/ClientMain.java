@@ -1,9 +1,10 @@
 package Client;
 
-import Shared.GsonAdapters.RequestEnumAdapter;
+import Server.QueryCommand.QueryResultObject.AdminGetSalesQueryResult;
+import Shared.GsonAdapters.RequestPacket;
 import Server.QueryCommand.QueryResultObject.ProdottiQueryResult;
 import Shared.DataIO;
-import Shared.GsonAdapters.UserLoginPacket;
+import Shared.GsonAdapters.LoginPacket;
 import Shared.Requests.Request;
 import com.google.gson.Gson;
 
@@ -18,7 +19,7 @@ public class ClientMain {
             //crea una socket per la connessione al server
             Socket socket = new Socket("localhost", 9000);
             Request request = Request.GET_PRODUCT_LIST;
-            RequestEnumAdapter requestEnumAdapter = new RequestEnumAdapter();
+            RequestPacket requestEnumAdapter = new RequestPacket();
             requestEnumAdapter.request = request;
 
             DataIO dataIO = new DataIO(socket);
@@ -30,19 +31,45 @@ public class ClientMain {
             System.out.println(list);
 
             Request request1 = Request.USER_LOGIN;
-            RequestEnumAdapter requestEnumAdapter1 = new RequestEnumAdapter();
+            RequestPacket requestEnumAdapter1 = new RequestPacket();
             requestEnumAdapter1.request = request1;
 
             dataIO.sendData(requestEnumAdapter1);
 
-            UserLoginPacket packet = new UserLoginPacket();
-            packet.email = "luca.deluca@mail.com";
+            LoginPacket packet = new LoginPacket();
+            packet.id = "luca.deluca@mail.com";
             packet.password = "delulu90";
             dataIO.sendData(packet);
 
             String result1 = dataIO.getData();
             Boolean bool = gson.fromJson(result1, Boolean.class);
             System.out.println(bool);
+
+
+            Request request2 = Request.ADMIN_LOGIN;
+            RequestPacket requestEnumAdapter2 = new RequestPacket();
+            requestEnumAdapter2.request = request2;
+
+            dataIO.sendData(requestEnumAdapter2);
+
+            LoginPacket packet1 = new LoginPacket();
+            packet1.id = "marty_mcfly";
+            packet1.password = "grande_giove85";
+            dataIO.sendData(packet1);
+
+            String result2 = dataIO.getData();
+            Boolean bool1 = gson.fromJson(result2, Boolean.class);
+            System.out.println(bool1);
+
+            Request request3 = Request.ADMIN_GET_SALES;
+            RequestPacket requestEnumAdapter3 = new RequestPacket();
+            requestEnumAdapter3.request = request3;
+
+            dataIO.sendData(requestEnumAdapter3);
+
+            String result3 = dataIO.getData();
+            List<AdminGetSalesQueryResult> list1 = gson.fromJson(result3, List.class);
+            System.out.println(list1);
 
             //chiudo la connessione
             socket.close();

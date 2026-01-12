@@ -24,7 +24,7 @@ public class SingletonDBTest {
 
         try {
             if (connection != null) {
-                QueryCommand queryCommand = new ProductCatalog();
+                AbstractQueryCommand queryCommand = new GetProductListCommand();
 
                 List<ProdottiQueryResult> prodottiQueryResults = (List<ProdottiQueryResult>) queryCommand.execute(null);
 

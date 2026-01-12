@@ -8,6 +8,7 @@ public enum Request {
     ADMIN_INSERT_PRODUCT,
     ADMIN_RECOMMENDS,
     ADMIN_GET_SALES,
+    ADMIN_GET_USER_TOP_SALE,
     USER_CHECKOUT,
     TEST
 }

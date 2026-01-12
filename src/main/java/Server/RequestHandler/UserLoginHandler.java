@@ -1,9 +1,9 @@
 package Server.RequestHandler;
 
-import Server.QueryCommand.QueryCommand;
+import Server.QueryCommand.AbstractQueryCommand;
 import Server.QueryCommand.UserLoginCommand;
 import Shared.DataIO;
-import Shared.GsonAdapters.UserLoginPacket;
+import Shared.GsonAdapters.LoginPacket;
 import Shared.Requests.Request;
 import com.google.gson.Gson;
 
@@ -38,12 +38,12 @@ public class UserLoginHandler extends AbstractRequestHandler {
     @Override
     public void handleRequest(Request request, Socket socket) throws SQLException, IOException {
         System.out.println("chiamata handleRequest di UserLoginHandler");
-        QueryCommand queryCommand = new UserLoginCommand();
+        AbstractQueryCommand queryCommand = new UserLoginCommand();
         DataIO dataIO = new DataIO(socket);
         String readData = dataIO.getData();
         Gson gson = new Gson();
-        UserLoginPacket loginPacket = gson.fromJson(readData, UserLoginPacket.class);
-        String correctPassword = (String) queryCommand.execute(loginPacket.email);
+        LoginPacket loginPacket = gson.fromJson(readData, LoginPacket.class);
+        String correctPassword = (String) queryCommand.execute(loginPacket.id);
 
         if(correctPassword.equals(loginPacket.password)){
             dataIO.sendData(true);

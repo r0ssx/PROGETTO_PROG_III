@@ -12,7 +12,7 @@ public class StategyTest {
     public static void main(String[] args) throws SQLException {
         SingletonDB db = SingletonDB.getInstance();
         db.config(DBConfig.URL, DBConfig.user, DBConfig.password);
-        QueryStrategy queryStrategy = new GetProductListQuery();
+        AbstractQueryStrategy queryStrategy = new GetProductListQuery();
 
         List<ProdottiQueryResult> queryResultObjectList = (List<ProdottiQueryResult>) queryStrategy.executeQuery(null);
         for (ProdottiQueryResult p : queryResultObjectList){

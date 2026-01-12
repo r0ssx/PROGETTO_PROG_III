@@ -4,10 +4,10 @@ import Database.SingletonDB;
 
 import java.sql.SQLException;
 
-public abstract class QueryCommand<Param, Res> {
+public abstract class AbstractQueryCommand<Param, Res> {
     protected SingletonDB db;
 
-    public QueryCommand() throws SQLException {
+    public AbstractQueryCommand() throws SQLException {
         db = SingletonDB.getInstance();
     }
 

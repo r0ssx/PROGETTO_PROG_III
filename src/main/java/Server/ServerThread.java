@@ -1,6 +1,6 @@
 package Server;
 
-import Shared.GsonAdapters.RequestEnumAdapter;
+import Shared.GsonAdapters.RequestPacket;
 import Server.RequestHandler.RequestCoRFacade;
 import Shared.DataIO;
 import Shared.Requests.Request;
@@ -89,7 +89,7 @@ public class ServerThread extends Thread {
         System.out.println(readData);
 
         Gson gson = new Gson();
-        RequestEnumAdapter requestEnumAdapter = gson.fromJson(readData, RequestEnumAdapter.class);
+        RequestPacket requestEnumAdapter = gson.fromJson(readData, RequestPacket.class);
         Request request = requestEnumAdapter.request;
         System.out.println("Richiesta ricevuta: " + request);
         RequestCoRFacade requestCoRFacade = RequestCoRFacade.getInstance();
