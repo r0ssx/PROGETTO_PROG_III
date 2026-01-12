@@ -2,6 +2,8 @@ package Server.RequestHandler;
 
 import Shared.Requests.Request;
 
+import java.net.Socket;
+
 /**
  * Handler concreto della Chain of Responsibility responsabile
  * della gestione delle richieste di tipo {@link Request#USER_CHECKOUT}.
@@ -24,10 +26,12 @@ public class UserCheckOutHandler extends AbstractRequestHandler{
      * Gestisce concretamente la richiesta di checkout dell'utente.
      * Questo metodo viene invocato solo se la richiesta è riconosciuta
      * come gestibile dall'handler corrente.
+     *
      * @param request la richiesta {@link Request#USER_CHECKOUT} da elaborare
+     * @param socket
      */
     @Override
-    public void handleRequest(Request request) {
+    public void handleRequest(Request request, Socket socket) {
         System.out.println("chiamata handleRequest di UserCheckoutHandler");
     }
 }

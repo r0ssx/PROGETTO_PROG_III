@@ -23,7 +23,7 @@ public class CoRTest {
 
         for(Request richiesta : enumRequest){
             try {
-                requestCoRFacade.handleRequest(richiesta);
+                //requestCoRFacade.handleRequest(richiesta);
             } catch (CoRException e) {
                 e.printStackTrace();
             }

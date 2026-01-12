@@ -2,6 +2,8 @@ package Server.RequestHandler;
 
 import Shared.Requests.Request;
 
+import java.net.Socket;
+
 /**
  * Handler concreto della Chain of Responsibility responsabile
  * della gestione delle richieste di tipo {@link Request#ADMIN_RECOMMENDS}.
@@ -24,10 +26,12 @@ public class AdminRecommendsHandler extends AbstractRequestHandler{
      * dell'amministratore.
      * Questo metodo viene invocato solo se la richiesta è riconosciuta
      * come gestibile dall'handler corrente.
+     *
      * @param request la richiesta {@link Request#ADMIN_RECOMMENDS} da elaborare
+     * @param socket
      */
     @Override
-    public void handleRequest(Request request) {
+    public void handleRequest(Request request, Socket socket) {
         System.out.println("chiamata handleRequest di AndminRecommendsHandler");
     }
 }

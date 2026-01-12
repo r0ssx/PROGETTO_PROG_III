@@ -1,5 +1,8 @@
 package Server;
 
+import Database.DBConfig;
+import Database.SingletonDB;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,21 +32,22 @@ public class ServerMain {
      * @param args argomenti da linea di comando (non utilizzati)
      */
     public static void main(String[] args){
-        {
-            try {
-                //crea una server socket
-                serverSocket = new ServerSocket(9000);
-                System.out.println("Waiting for client connection...");
+        SingletonDB db = SingletonDB.getInstance();
+        db.config(DBConfig.URL, DBConfig.user, DBConfig.password);
 
-                while(true){
-                    new ServerThread(serverSocket.accept()).start();
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+        try {
+            //crea una server socket
+            serverSocket = new ServerSocket(9000);
+            System.out.println("Waiting for client connection...");
+
+            while(true){
+                new ServerThread(serverSocket.accept()).start();
             }
-            finally {
-                stop();
-            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        finally {
+            stop();
         }
     }
 

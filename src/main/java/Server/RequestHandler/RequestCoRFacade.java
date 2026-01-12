@@ -2,6 +2,10 @@ package Server.RequestHandler;
 
 import Shared.Requests.Request;
 
+import java.io.IOException;
+import java.net.Socket;
+import java.sql.SQLException;
+
 /**
  * Facade per la gestione della Chain of Responsibility (CoR)
  * degli {@link AbstractRequestHandler}.
@@ -13,6 +17,9 @@ import Shared.Requests.Request;
  * i dettagli di costruzione e collegamento della catena.
  */
 public class RequestCoRFacade {
+
+    private static RequestCoRFacade instance = new RequestCoRFacade();
+
 
     /**
      * Testa della Chain of Responsibility.
@@ -59,9 +66,11 @@ public class RequestCoRFacade {
      * che provvederà a gestirla o a delegarla agli handler successivi.
      * @param request la richiesta da gestire
      */
+    public void handleRequest(Request request, Socket socket) throws SQLException, IOException {
+        chainHead.handle(request, socket);
+    }
 
-    public void handleRequest(Request request){
-
-        chainHead.handle(request);
+    public static RequestCoRFacade getInstance() {
+        return instance;
     }
 }

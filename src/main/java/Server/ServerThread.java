@@ -1,11 +1,14 @@
 package Server;
 
+import Shared.GsonAdapters.RequestEnumAdapter;
+import Server.RequestHandler.RequestCoRFacade;
 import Shared.DataIO;
+import Shared.Requests.Request;
 import com.google.gson.Gson;
 
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
 
 /**
  * Thread del server che gestisce la comunicazione con un singolo client.
@@ -61,7 +64,11 @@ public class ServerThread extends Thread {
     public void run(){
         boolean didRead;
         do {
-            didRead = serverInfiniteRead();
+            try {
+                didRead = serverInfiniteRead();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         } while (didRead);
     }
 
@@ -70,7 +77,7 @@ public class ServerThread extends Thread {
      *
      * @return true se la lettura ha successo, false in caso di errore
      */
-    private boolean serverInfiniteRead(){
+    private boolean serverInfiniteRead() throws SQLException, IOException {
         String readData;
 
         try{
@@ -80,6 +87,14 @@ public class ServerThread extends Thread {
             return false;
         }
         System.out.println(readData);
+
+        Gson gson = new Gson();
+        String actualJson = gson.fromJson(readData, String.class);
+        RequestEnumAdapter requestEnumAdapter = gson.fromJson(actualJson, RequestEnumAdapter.class);
+        Request request = requestEnumAdapter.request;
+        System.out.println("Richiesta ricevuta: " + request);
+        RequestCoRFacade requestCoRFacade = RequestCoRFacade.getInstance();
+        requestCoRFacade.handleRequest(request, socket);
 
         return true;
     }

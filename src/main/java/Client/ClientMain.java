@@ -1,10 +1,14 @@
 package Client;
 
+import Shared.GsonAdapters.RequestEnumAdapter;
 import Server.QueryCommand.QueryResultObject.ProdottiQueryResult;
 import Shared.DataIO;
+import Shared.Requests.Request;
+import com.google.gson.Gson;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.List;
 
 public class ClientMain {
 
@@ -12,18 +16,18 @@ public class ClientMain {
         try {
             //crea una socket per la connessione al server
             Socket socket = new Socket("localhost", 9000);
+            Request request = Request.GET_PRODUCT_LIST;
+            RequestEnumAdapter requestEnumAdapter = new RequestEnumAdapter();
+            requestEnumAdapter.request = request;
 
-            ProdottiQueryResult data = new ProdottiQueryResult();
-            data.nome = "Mouse";
-            data.quantità_scorta = "10";
-            data.codice = "A01";
-            data.costo = "20€";
-            data.descrizione = "Mouse wireless";
-            data.categoria = "Elettronica";
+            Gson gson = new Gson();
 
             DataIO dataIO = new DataIO(socket);
-            dataIO.sendData(data);
+            dataIO.sendData(gson.toJson(requestEnumAdapter));
 
+            String result = dataIO.getData();
+            List<ProdottiQueryResult> list = gson.fromJson(result, List.class);
+            System.out.println(list);
 
             //chiudo la connessione
             socket.close();

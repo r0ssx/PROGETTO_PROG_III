@@ -1,6 +1,15 @@
 package Server.RequestHandler;
 
+import Server.QueryCommand.ProductCatalog;
+import Server.QueryCommand.QueryCommand;
+import Server.QueryCommand.QueryResultObject.ProdottiQueryResult;
+import Shared.DataIO;
 import Shared.Requests.Request;
+
+import java.io.IOException;
+import java.net.Socket;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Handler concreto della Chain of Responsibility responsabile
@@ -24,9 +33,15 @@ public class GetProductListHandler extends AbstractRequestHandler{
      * Questo metodo viene invocato solo se la richiesta è riconosciuta
      * come gestibile dall'handler corrente.
      * @param request la richiesta {@link Request#GET_PRODUCT_LIST} da elaborare
+     * @param socket
      */
     @Override
-    public void handleRequest(Request request) {
+    public void handleRequest(Request request, Socket socket) throws SQLException, IOException {
         System.out.println("chiamata handleRequest di GetProductListHandler");
+        QueryCommand queryCommand = new ProductCatalog();
+        List<ProdottiQueryResult> result = (List<ProdottiQueryResult>) queryCommand.execute();
+        DataIO dataIO = new DataIO(socket);
+        dataIO.sendData(result);
+
     }
 }

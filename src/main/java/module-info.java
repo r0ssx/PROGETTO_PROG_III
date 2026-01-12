@@ -7,5 +7,6 @@ module com.example.progetto_prog_iii {
 
     opens Client to javafx.fxml;
     opens Server.QueryCommand.QueryResultObject to com.google.gson;
-    exports Client;
+    opens Shared.Requests to com.google.gson;
+    opens Shared.GsonAdapters to com.google.gson;
 }

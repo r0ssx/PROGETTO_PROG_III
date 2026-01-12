@@ -3,6 +3,10 @@ package Server.RequestHandler;
 import Exceptions.CoRException;
 import Shared.Requests.Request;
 
+import java.io.IOException;
+import java.net.Socket;
+import java.sql.SQLException;
+
 /**
  * Classe astratta base per l'implementazione del pattern
  * <b>Chain of Responsibility</b> per la gestione delle richieste del server.
@@ -41,17 +45,18 @@ public abstract class AbstractRequestHandler {
     /**
      * Metodo template che implementa la logica della Chain of Responsibility.
      * Se l'handler corrente è in grado di gestire la richiesta,
-     * viene invocato {@link #handleRequest(Request)}.
+     * viene invocato {@link #handleRequest(Request, Socket)}.
      * Altrimenti la richiesta viene inoltrata al prossimo handler.
      * @param request la richiesta da gestire
+     * @param socket
      * @throws CoRException se nessun handler nella catena è in grado
-     *                      di gestire la richiesta
+     * di gestire la richiesta
      */
-    public final void handle (Request request) throws CoRException{
+    public final void handle (Request request, Socket socket) throws CoRException, SQLException, IOException {
         if(canHandle(request)){
-            handleRequest(request);
+            handleRequest(request, socket);
         } else if (nextHandler != null) {
-            nextHandler.handle(request);
+            nextHandler.handle(request, socket);
         } else {
             throw new CoRException("La richiesta corrente non può essere soddisfatta!!");
         }
@@ -73,6 +78,7 @@ public abstract class AbstractRequestHandler {
      * Questo metodo deve essere implementato dalle sottoclassi
      * per definire il comportamento specifico dell'handler.
      * @param request la richiesta da gestire
+     * @param socket
      */
-    public abstract void handleRequest(Request request);
+    public abstract void handleRequest(Request request, Socket socket) throws SQLException, IOException;
 }
