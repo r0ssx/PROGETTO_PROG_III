@@ -27,6 +27,6 @@ public class AdminGetSalesHandler extends AbstractRequestHandler{
      */
     @Override
     public void handleRequest(Request request) {
-
+        System.out.println("Chiamata handleRequest di AndminGetSalesHandler");
     }
 }

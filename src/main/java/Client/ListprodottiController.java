@@ -1,7 +1,7 @@
 package Client;
 
 
-import QueryCommand.QueryResultObject.ProdottiQueryResult;
+import Server.QueryCommand.QueryResultObject.ProdottiQueryResult;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

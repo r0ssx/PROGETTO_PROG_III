@@ -1,13 +1,11 @@
 package Database;
 
-import QueryCommand.*;
-import QueryCommand.QueryResultObject.ProdottiQueryResult;
+import Server.QueryCommand.*;
+import Server.QueryCommand.QueryResultObject.ProdottiQueryResult;
 
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 public class SingletonDBTest {
@@ -28,7 +26,7 @@ public class SingletonDBTest {
             if (connection != null) {
                 QueryCommand queryCommand = new ProductCatalog();
 
-                List<ProdottiQueryResult> prodottiQueryResults = queryCommand.execute();
+                List<ProdottiQueryResult> prodottiQueryResults = (List<ProdottiQueryResult>) queryCommand.execute();
 
                 prodottiQueryResults.forEach(System.out::println);
                   }else {

@@ -1,6 +1,8 @@
-package QueryCommand;
-import QueryCommand.QueryResultObject.ProdottiQueryResult;
-import QueryCommand.QueryResultObject.QueryResultObject;
+package Server.QueryStrategy;
+
+import Server.QueryCommand.ProductCatalog;
+import Server.QueryCommand.QueryResultObject.ProdottiQueryResult;
+import Server.QueryCommand.QueryResultObject.QueryResultObject;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,19 +11,22 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductCatalog extends QueryCommand {
-
-    public ProductCatalog() throws SQLException {
-    }
+public class GetProductListQuery extends QueryStrategy<Void, List<ProdottiQueryResult>>{
 
     @Override
-    public List<ProdottiQueryResult> execute() throws SQLException {
-        Connection connection = db.createConnection();
+    protected ResultSet concreteQuery(Void params) throws SQLException {
+
         String query = "SELECT * From Prodotto";
+
         Statement statement = connection.createStatement();
 
         ResultSet resultSet = statement.executeQuery(query);
 
+        return resultSet;
+    }
+
+    @Override
+    protected List<ProdottiQueryResult> convertResultSet(ResultSet resultSet) throws SQLException {
 
         List<ProdottiQueryResult> queryResultObjectList = new ArrayList<>();
 
@@ -35,8 +40,6 @@ public class ProductCatalog extends QueryCommand {
             prodottiQueryResult.categoria = resultSet.getString("categoria");
             queryResultObjectList.add(prodottiQueryResult);
         }
-
-        connection.close();
 
         return queryResultObjectList;
     }

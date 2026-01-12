@@ -1,9 +1,7 @@
 package Client;
 
-import QueryCommand.QueryResultObject.ProdottiQueryResult;
-import QueryCommand.QueryResultObject.QueryResultObject;
+import Server.QueryCommand.QueryResultObject.ProdottiQueryResult;
 import Shared.DataIO;
-import com.google.gson.Gson;
 
 import java.io.*;
 import java.net.Socket;

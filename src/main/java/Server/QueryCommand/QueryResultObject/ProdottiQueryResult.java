@@ -1,4 +1,4 @@
-package QueryCommand.QueryResultObject;
+package Server.QueryCommand.QueryResultObject;
 
 public class ProdottiQueryResult {
 

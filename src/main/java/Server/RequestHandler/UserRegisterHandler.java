@@ -27,6 +27,6 @@ public class UserRegisterHandler extends AbstractRequestHandler{
      */
     @Override
     public void handleRequest(Request request) {
-
+        System.out.println("chiamata handleRequest di UserRegisterHandler");
     }
 }

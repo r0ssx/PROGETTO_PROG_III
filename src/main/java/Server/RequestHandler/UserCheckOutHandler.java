@@ -28,6 +28,6 @@ public class UserCheckOutHandler extends AbstractRequestHandler{
      */
     @Override
     public void handleRequest(Request request) {
-
+        System.out.println("chiamata handleRequest di UserCheckoutHandler");
     }
 }

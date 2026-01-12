@@ -61,6 +61,7 @@ public class RequestCoRFacade {
      */
 
     public void handleRequest(Request request){
-        chainHead.handleRequest(request);
+
+        chainHead.handle(request);
     }
 }
