@@ -2,7 +2,7 @@ package Server.QueryStrategy;
 
 import Database.DBConfig;
 import Database.SingletonDB;
-import Server.QueryCommand.QueryResultObject.ProdottiQueryResult;
+import Server.QueryCommand.QueryResultObject.ProductQueryResult;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -14,8 +14,8 @@ public class StategyTest {
         db.config(DBConfig.URL, DBConfig.user, DBConfig.password);
         AbstractQueryStrategy queryStrategy = new GetProductListQuery();
 
-        List<ProdottiQueryResult> queryResultObjectList = (List<ProdottiQueryResult>) queryStrategy.executeQuery(null);
-        for (ProdottiQueryResult p : queryResultObjectList){
+        List<ProductQueryResult> queryResultObjectList = (List<ProductQueryResult>) queryStrategy.executeQuery(null);
+        for (ProductQueryResult p : queryResultObjectList){
             System.out.println(p);
         }
     }

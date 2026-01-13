@@ -2,7 +2,7 @@ package Server.RequestHandler;
 
 import Server.QueryCommand.GetProductListCommand;
 import Server.QueryCommand.AbstractQueryCommand;
-import Server.QueryCommand.QueryResultObject.ProdottiQueryResult;
+import Server.QueryCommand.QueryResultObject.ProductQueryResult;
 import Shared.DataIO;
 import Shared.Requests.Request;
 
@@ -39,7 +39,7 @@ public class GetProductListHandler extends AbstractRequestHandler{
     public void handleRequest(Request request, Socket socket) throws SQLException, IOException {
         System.out.println("chiamata handleRequest di GetProductListHandler");
         AbstractQueryCommand queryCommand = new GetProductListCommand();
-        List<ProdottiQueryResult> result = (List<ProdottiQueryResult>) queryCommand.execute(null);
+        List<ProductQueryResult> result = (List<ProductQueryResult>) queryCommand.execute(null);
         DataIO dataIO = new DataIO(socket);
         dataIO.sendData(result);
 

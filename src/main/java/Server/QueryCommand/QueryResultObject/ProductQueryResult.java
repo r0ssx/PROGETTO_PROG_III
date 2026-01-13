@@ -1,6 +1,6 @@
 package Server.QueryCommand.QueryResultObject;
 
-public class ProdottiQueryResult {
+public class ProductQueryResult {
 
     public String nome;
     public String quantità_scorta;

@@ -23,6 +23,7 @@ public class AdminGetSalesQuery extends AbstractQueryStrategy<Void, List<AdminGe
         return resultSet;
     }
 
+
     @Override
     protected List<AdminGetSalesQueryResult> convertResultSet(ResultSet resultSet) throws SQLException {
 

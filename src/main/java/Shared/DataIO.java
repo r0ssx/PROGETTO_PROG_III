@@ -51,7 +51,7 @@ public class DataIO {
      * @return la stringa letta dalla socket
      * @throws IOException se si verifica un errore di I/O durante la lettura
      */
-    public String getData() throws IOException {
+    public String getRawData() throws IOException {
 
         //ottieni l'input stream
         InputStream inputStream = socket.getInputStream();
@@ -63,5 +63,11 @@ public class DataIO {
         //legge dalla socket e la ritorna
         String recv = dataInputStream.readUTF();
         return recv;
+    }
+
+    public <T> T getData(Class<T> classType) throws IOException {
+        String recv = this.getRawData();
+        Gson gson = new Gson();
+        return gson.fromJson(recv, classType);
     }
 }

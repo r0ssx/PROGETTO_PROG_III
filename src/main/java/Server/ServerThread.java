@@ -52,7 +52,7 @@ public class ServerThread extends Thread {
     public String getData() throws IOException {
         DataIO dataIO = new DataIO(socket);
 
-        return dataIO.getData();
+        return dataIO.getRawData();
 
     }
 

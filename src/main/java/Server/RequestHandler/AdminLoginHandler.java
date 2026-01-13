@@ -41,7 +41,7 @@ public class AdminLoginHandler extends AbstractRequestHandler{
         System.out.println("chiamata handleRequest di AdminLoginHandler");
         AbstractQueryCommand queryCommand = new AdminLoginCommand();
         DataIO dataIO = new DataIO(socket);
-        String readData = dataIO.getData();
+        String readData = dataIO.getRawData();
         Gson gson = new Gson();
         AuthPacket loginPacket = gson.fromJson(readData, AuthPacket.class);
         String correctPassword = (String) queryCommand.execute(loginPacket.id);

@@ -1,6 +1,7 @@
 package Server.QueryStrategy;
 
-import Server.QueryCommand.QueryResultObject.ProdottiQueryResult;
+import Server.QueryCommand.QueryResultObject.AdminGetSalesQueryResult;
+import Server.QueryCommand.QueryResultObject.ProductQueryResult;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetProductListQuery extends AbstractQueryStrategy<Void, List<ProdottiQueryResult>> {
+public class GetProductListQuery extends AbstractQueryStrategy<Void, List<ProductQueryResult>> {
 
     @Override
     protected ResultSet concreteQuery(Void params) throws SQLException {
@@ -23,12 +24,12 @@ public class GetProductListQuery extends AbstractQueryStrategy<Void, List<Prodot
     }
 
     @Override
-    protected List<ProdottiQueryResult> convertResultSet(ResultSet resultSet) throws SQLException {
+    protected List<ProductQueryResult> convertResultSet(ResultSet resultSet) throws SQLException {
 
-        List<ProdottiQueryResult> queryResultObjectList = new ArrayList<>();
+        List<ProductQueryResult> queryResultObjectList = new ArrayList<>();
 
         while(resultSet.next()) {
-            ProdottiQueryResult prodottiQueryResult = new ProdottiQueryResult();
+            ProductQueryResult prodottiQueryResult = new ProductQueryResult();
             prodottiQueryResult.nome = resultSet.getString("nome");
             prodottiQueryResult.quantità_scorta = resultSet.getString("quantità_scorta");
             prodottiQueryResult.codice = resultSet.getString("codice");

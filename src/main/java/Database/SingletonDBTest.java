@@ -1,7 +1,7 @@
 package Database;
 
 import Server.QueryCommand.*;
-import Server.QueryCommand.QueryResultObject.ProdottiQueryResult;
+import Server.QueryCommand.QueryResultObject.ProductQueryResult;
 
 
 import java.sql.Connection;
@@ -26,7 +26,7 @@ public class SingletonDBTest {
             if (connection != null) {
                 AbstractQueryCommand queryCommand = new GetProductListCommand();
 
-                List<ProdottiQueryResult> prodottiQueryResults = (List<ProdottiQueryResult>) queryCommand.execute(null);
+                List<ProductQueryResult> prodottiQueryResults = (List<ProductQueryResult>) queryCommand.execute(null);
 
                 prodottiQueryResults.forEach(System.out::println);
                   }else {

@@ -40,7 +40,7 @@ public class UserRegisterHandler extends AbstractRequestHandler{
         System.out.println("chiamata handleRequest di UserRegisterHandler");
         AbstractQueryCommand queryCommand = new UserRegisterCommand();
         DataIO dataIO = new DataIO(socket);
-        String readData = dataIO.getData();
+        String readData = dataIO.getRawData();
         Gson gson = new Gson();
         AuthPacket registerPacket = gson.fromJson(readData, AuthPacket.class);
         Boolean bool = (Boolean) queryCommand.execute(registerPacket);
