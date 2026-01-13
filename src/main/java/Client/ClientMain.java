@@ -2,6 +2,7 @@ package Client;
 
 import Client.RequestCommand.*;
 import Server.QueryCommand.QueryResultObject.AdminGetSalesQueryResult;
+import Shared.GsonAdapters.RecommendPacket;
 import Shared.GsonAdapters.RequestPacket;
 import Server.QueryCommand.QueryResultObject.ProductQueryResult;
 import Shared.DataIO;
@@ -54,6 +55,11 @@ public class ClientMain {
             AbstractRequestCommand adminGetTopSaleRequest = new AdminGetTopSaleRequestCommand();
             String adminGetTopSaleResult = (String) adminGetTopSaleRequest.makeRequest("federica.deamicis@mail.com");
             System.out.println(adminGetTopSaleResult);
+
+            //Admin recommends
+            AbstractRequestCommand adminRecommendsRequest = new AdminRecommendsRequestCommand();
+            adminRecommendsRequest.makeRequest(new RecommendPacket("marty_mcfly", "federica.deamicis@mail.com"));
+            System.out.println(adminRecommendsRequest);
 
 
             //chiudo la connessione

@@ -1,8 +1,14 @@
 package Server.RequestHandler;
 
+import Server.QueryCommand.AbstractQueryCommand;
+import Server.QueryCommand.AdminRecommendsCommand;
+import Shared.DataIO;
+import Shared.GsonAdapters.RecommendPacket;
 import Shared.Requests.Request;
 
+import java.io.IOException;
 import java.net.Socket;
+import java.sql.SQLException;
 
 /**
  * Handler concreto della Chain of Responsibility responsabile
@@ -26,12 +32,17 @@ public class AdminRecommendsHandler extends AbstractRequestHandler{
      * dell'amministratore.
      * Questo metodo viene invocato solo se la richiesta è riconosciuta
      * come gestibile dall'handler corrente.
-     *
      * @param request la richiesta {@link Request#ADMIN_RECOMMENDS} da elaborare
      * @param socket
      */
     @Override
-    public void handleRequest(Request request, Socket socket) {
-        System.out.println("chiamata handleRequest di AndminRecommendsHandler");
+    public void handleRequest(Request request, Socket socket) throws IOException, SQLException {
+        System.out.println("chiamata handleRequest di AdminRecommendsHandler");
+        AbstractQueryCommand queryCommand = new AdminRecommendsCommand();
+        DataIO dataIO = new DataIO(socket);
+        RecommendPacket readData = dataIO.getData(RecommendPacket.class);
+        System.out.println(readData);
+        queryCommand.execute(readData);
+
     }
 }
