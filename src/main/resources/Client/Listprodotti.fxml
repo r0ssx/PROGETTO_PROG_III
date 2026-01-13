@@ -6,7 +6,7 @@
 <VBox spacing="10" alignment="CENTER"
       xmlns="http://javafx.com/javafx/20"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="Client.ListprodottiController">
+      fx:controller="Client.Controllers.ListprodottiController">
 
     <Label text="Lista Prodotti" style="-fx-font-size: 18px;"/>
 
