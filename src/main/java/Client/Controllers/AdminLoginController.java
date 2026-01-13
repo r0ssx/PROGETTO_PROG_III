@@ -2,6 +2,7 @@ package Client.Controllers;
 
 import Client.RequestCommand.AdminLoginRequestCommand;
 import Client.RequestCommand.UserLoginRequestCommand;
+import Client.SingletonStage;
 import Shared.GsonAdapters.AuthPacket;
 
 import java.io.IOException;
@@ -20,7 +21,8 @@ public class AdminLoginController extends AuthController {
     }
 
     @Override
-    protected void changeScene() {
+    protected void changeScene() throws IOException {
+        SingletonStage.fastChangeScene("UserHome.fxml", "Home", new UserHomeController());
 
     }
 }

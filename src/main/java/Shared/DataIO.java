@@ -1,9 +1,13 @@
 package Shared;
 
+import Server.QueryCommand.QueryResultObject.ProductQueryResult;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.net.Socket;
+import java.util.List;
 
 /**
  * Classe di supporto per la gestione dell'invio e della ricezione
@@ -59,6 +63,8 @@ public class DataIO {
         //ottieni il buffered reader per l'input stream
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         DataInputStream dataInputStream = new DataInputStream(inputStream);
+
+
 
         //legge dalla socket e la ritorna
         String recv = dataInputStream.readUTF();
