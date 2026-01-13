@@ -1,6 +1,6 @@
 package Shared.GsonAdapters;
 
-public class RecommendPacket {
+public class RecommendPacket extends Packet {
     public String email;
     public String nome_utente;
 

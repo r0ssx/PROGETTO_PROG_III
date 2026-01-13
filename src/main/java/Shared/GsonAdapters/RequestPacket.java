@@ -2,7 +2,7 @@ package Shared.GsonAdapters;
 
 import Shared.Requests.Request;
 
-public class RequestPacket {
+public class RequestPacket extends Packet {
     public Request request;
 
     public RequestPacket(){}

@@ -62,6 +62,9 @@ public class RequestCoRFacade {
         AbstractRequestHandler adminGetTopSale = new AdminGetTopSaleRequestHandler(Request.ADMIN_GET_USER_TOP_SALE);
         userCheckOut.setNextHandler(adminGetTopSale);
 
+        AbstractRequestHandler getRecommendations = new GetRecommendationHandler(Request.GET_RECOMMENDATIONS);
+        adminGetTopSale.setNextHandler(getRecommendations);
+
     }
 
     /**

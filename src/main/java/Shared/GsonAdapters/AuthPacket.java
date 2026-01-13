@@ -1,6 +1,6 @@
 package Shared.GsonAdapters;
 
-public class AuthPacket {
+public class AuthPacket extends Packet {
     public String id;
     public String password;
 

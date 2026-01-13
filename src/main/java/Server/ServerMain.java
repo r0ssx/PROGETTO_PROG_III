@@ -43,11 +43,8 @@ public class ServerMain {
             while(true){
                 new ServerThread(serverSocket.accept()).start();
             }
-        } catch (IOException e) {
+        } catch (Throwable e) {
             throw new RuntimeException(e);
-        }
-        finally {
-            stop();
         }
     }
 

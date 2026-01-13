@@ -8,7 +8,6 @@
 
 <VBox xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="Client.Controllers.LoginController"
       spacing="15"
       alignment="CENTER"
       prefWidth="400"
@@ -39,5 +38,12 @@
             prefWidth="150"
             prefHeight="40"
             onAction="#handleSubmit"/>
+
+    <!-- Back button -->
+    <Button text="Back"
+            fx:id="backButton"
+            prefWidth="100"
+            prefHeight="20"
+            onAction="#handleBack"/>
 
 </VBox>

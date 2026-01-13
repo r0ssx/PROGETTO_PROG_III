@@ -24,7 +24,7 @@ public class AdminGetTopSaleQuery extends AbstractQueryStrategy<String, String> 
 
        ResultSet resultSet = statement.executeQuery();
 
-        return resultSet;
+       return resultSet;
     }
 
     @Override

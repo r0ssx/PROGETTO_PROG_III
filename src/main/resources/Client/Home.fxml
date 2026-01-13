@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <VBox xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="Client.Controllers.HomeController"
       spacing="25"
       alignment="CENTER"
       prefWidth="500"

@@ -11,5 +11,6 @@ public enum Request {
     ADMIN_GET_SALES,
     ADMIN_GET_USER_TOP_SALE,
     USER_CHECKOUT,
+    GET_RECOMMENDATIONS,
     TEST
 }

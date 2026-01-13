@@ -56,9 +56,13 @@ public class ClientMain {
             String adminGetTopSaleResult = (String) adminGetTopSaleRequest.makeRequest("federica.deamicis@mail.com");
             System.out.println(adminGetTopSaleResult);
 
-            //Admin recommends
-            AbstractRequestCommand adminRecommendsRequest = new AdminRecommendsRequestCommand();
-            adminRecommendsRequest.makeRequest(new RecommendPacket( "federica.deamicis@mail.com", "marty_mcfly"));
+//            //Admin recommends
+//            AbstractRequestCommand adminRecommendsRequest = new AdminRecommendsRequestCommand();
+//            adminRecommendsRequest.makeRequest(new RecommendPacket( "federica.deamicis@mail.com", "marty_mcfly"));
+
+            AbstractRequestCommand getRecommendations = new GetRecommendationsCommand();
+            List<ProductQueryResult> getreclist = (List<ProductQueryResult>) getRecommendations.makeRequest("federica.deamicis@mail.com");
+            System.out.println(getreclist);
 
             //chiudo la connessione
             server.disconnect();
