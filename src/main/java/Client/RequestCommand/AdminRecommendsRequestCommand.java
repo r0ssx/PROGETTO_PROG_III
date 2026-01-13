@@ -16,7 +16,7 @@ public class AdminRecommendsRequestCommand extends AbstractRequestCommand<Recomm
         server.sendData(requestPacket);
 
         //Sending request parameters
-        server.sendData(requestPacket);
+        server.sendData(recommendPacket);
 
         return null;
     }

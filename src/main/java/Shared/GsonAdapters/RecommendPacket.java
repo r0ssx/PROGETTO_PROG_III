@@ -8,4 +8,12 @@ public class RecommendPacket {
         this.email = email;
         this.nome_utente = nome_utente;
     }
+
+    @Override
+    public String toString() {
+        return "RecommendPacket{" +
+                "email='" + email + '\'' +
+                ", nome_utente='" + nome_utente + '\'' +
+                '}';
+    }
 }

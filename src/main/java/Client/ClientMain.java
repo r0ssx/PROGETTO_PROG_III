@@ -58,9 +58,7 @@ public class ClientMain {
 
             //Admin recommends
             AbstractRequestCommand adminRecommendsRequest = new AdminRecommendsRequestCommand();
-            adminRecommendsRequest.makeRequest(new RecommendPacket("marty_mcfly", "federica.deamicis@mail.com"));
-            System.out.println(adminRecommendsRequest);
-
+            adminRecommendsRequest.makeRequest(new RecommendPacket( "federica.deamicis@mail.com", "marty_mcfly"));
 
             //chiudo la connessione
             server.disconnect();
