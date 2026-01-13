@@ -1,5 +1,6 @@
 package Server.RequestHandler;
 
+import Client.RequestCommand.AbstractRequestCommand;
 import Shared.Requests.Request;
 
 import java.io.IOException;
@@ -57,6 +58,9 @@ public class RequestCoRFacade {
 
         AbstractRequestHandler userCheckOut = new UserCheckOutHandler(Request.USER_CHECKOUT);
         adminGetSales.setNextHandler(userCheckOut);
+
+        AbstractRequestHandler adminGetTopSale = new AdminGetTopSaleRequestHandler(Request.ADMIN_GET_USER_TOP_SALE);
+        userCheckOut.setNextHandler(adminGetTopSale);
 
     }
 

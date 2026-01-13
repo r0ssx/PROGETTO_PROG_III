@@ -50,6 +50,11 @@ public class ClientMain {
             Boolean userRegisterResult = (Boolean) userRegisterRequest.makeRequest(new AuthPacket("federica.deamicis@mail.com", "winx37"));
             System.out.println("Stato Register: "+ userRegisterResult);
 
+            //Admin get user top sale
+            AbstractRequestCommand adminGetTopSaleRequest = new AdminGetTopSaleRequestCommand();
+            String adminGetTopSaleResult = (String) adminGetTopSaleRequest.makeRequest("federica.deamicis@mail.com");
+            System.out.println(adminGetTopSaleResult);
+
 
             //chiudo la connessione
             server.disconnect();
