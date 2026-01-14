@@ -1,6 +1,6 @@
 package Client.RequestCommand;
 
-import Client.SingletonServerFacade;
+import Client.Utilities.SingletonServerFacade;
 
 import java.io.IOException;
 import java.sql.SQLException;

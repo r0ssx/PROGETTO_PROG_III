@@ -1,50 +1,69 @@
 package Client.Controllers;
 
-import Client.SingletonStage;
+import Client.MainApp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HomeController implements Controller {
+public class HomeController {
+    @FXML
+    private Label welcomeText;
 
     @FXML
-    private Button adminLoginButton;
+    protected void userLoginClick() throws IOException {
+        System.out.println("userLoginClicked");
 
-    @FXML
-    private Button userLoginButton;
+        // Apre user login
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("UserLogin.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Stage stage = new Stage();
+        stage.setTitle("User Login");
+        stage.setScene(scene);
+        stage.show();
 
-    @FXML
-    private Button userRegisterButton;
-
-    @FXML
-    private void handleAdminLogin(ActionEvent event) {
-        System.out.println("Admin login pressed");
-        try {
-            SingletonStage.fastChangeScene("Auth.fxml", "Admin Login", new AdminLoginController());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // Chiude lo stage corrente
+        Stage thisStage = (Stage) welcomeText.getScene().getWindow();
+        thisStage.close();
     }
 
     @FXML
-    private void handleUserLogin(ActionEvent event) {
-        System.out.println("User login pressed");
-        try {
-            SingletonStage.fastChangeScene("Auth.fxml", "User Login", new UserLoginController());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    protected void userRegisterClick() throws IOException {
+        System.out.println("userRegisterClick");
+
+        // Apre user register
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("UserRegister.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Stage stage = new Stage();
+        stage.setTitle("User Login");
+        stage.setScene(scene);
+        stage.show();
+
+        // Chiude lo stage corrente
+        Stage thisStage = (Stage) welcomeText.getScene().getWindow();
+        thisStage.close();
     }
 
     @FXML
-    private void handleUserRegister(ActionEvent event) {
-        System.out.println("User register pressed");
-        try {
-            SingletonStage.fastChangeScene("Auth.fxml", "User Register", new UserRegisterController());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    protected void adminLoginClick() throws IOException {
+        System.out.println("adminLoginClick");
+
+        // Apre admin login
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("AdminLogin.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Stage stage = new Stage();
+        stage.setTitle("User Login");
+        stage.setScene(scene);
+        stage.show();
+
+        // Chiude lo stage corrente
+        Stage thisStage = (Stage) welcomeText.getScene().getWindow();
+        thisStage.close();
     }
 }

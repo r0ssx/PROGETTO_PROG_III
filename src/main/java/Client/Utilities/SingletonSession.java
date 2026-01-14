@@ -1,4 +1,4 @@
-package Client;
+package Client.Utilities;
 
 /**
  * Singleton che gestisce la sessione dell'utente nell'applicazione.

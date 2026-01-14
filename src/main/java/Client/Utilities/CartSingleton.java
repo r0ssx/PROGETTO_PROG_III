@@ -1,4 +1,4 @@
-package Client.Controllers;
+package Client.Utilities;
 
 import Server.QueryCommand.QueryResultObject.ProductQueryResult;
 

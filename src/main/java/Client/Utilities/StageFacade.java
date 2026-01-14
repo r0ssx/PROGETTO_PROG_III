@@ -1,6 +1,7 @@
-package Client;
+package Client.Utilities;
 
-import Client.Controllers.Controller;
+import Client.Controller;
+import Client.MainApp;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -25,7 +26,7 @@ public class StageFacade {
     /**
      * Loader FXML utilizzato per caricare le scene.
      */
-    protected FXMLLoader loader;
+    protected final FXMLLoader LOADER;
 
     /**
      * Costruisce uno stage senza controller specifico.
@@ -37,12 +38,12 @@ public class StageFacade {
     public StageFacade(String fxmlName, String windowName) throws IOException {
         System.out.println("Trying to load fxml: " + fxmlName);
 
-        loader = new FXMLLoader(getClass().getResource(fxmlName));
+        LOADER = new FXMLLoader(getClass().getResource(fxmlName));
 
         STAGE = new Stage();
 
         STAGE.setTitle(windowName);
-        STAGE.setScene(new Scene(loader.load()));
+        STAGE.setScene(new Scene(LOADER.load()));
     }
 
     /**
@@ -55,10 +56,10 @@ public class StageFacade {
     public StageFacade(String fxmlName, String windowName, Controller controller) throws IOException {
         System.out.println("Trying to load fxml: " + fxmlName);
 
-        loader = new FXMLLoader(MainApp.class.getResource(fxmlName));
+        LOADER = new FXMLLoader(MainApp.class.getResource(fxmlName));
 
         setController(controller);
-        Parent root = loader.load();
+        Parent root = LOADER.load();
 
         STAGE = new Stage();
 
@@ -78,7 +79,7 @@ public class StageFacade {
      * @param controller controller da associare allo stage
      */
     public void setController(Controller controller) {
-        loader.setController(controller);
+        LOADER.setController(controller);
     }
 
     /**
@@ -88,22 +89,5 @@ public class StageFacade {
      */
     public static void closeStageFromBtn(Button button) {
         ((Stage) button.getScene().getWindow()).close();
-    }
-
-    /**
-     * Cambia la scena dello stage corrente.
-     * @param fxmlName  nome del file FXML della nuova scena
-     * @param windowName titolo della finestra
-     * @param controller controller da associare alla nuova scena
-     * @throws IOException se il file FXML non viene trovato o non può essere caricato
-     */
-    public void changeScene(String fxmlName, String windowName, Controller controller) throws IOException {
-        loader = new FXMLLoader(MainApp.class.getResource(fxmlName));
-
-        setController(controller);
-        Parent root = loader.load();
-
-        STAGE.setTitle(windowName);
-        STAGE.setScene(new Scene(root));
     }
 }

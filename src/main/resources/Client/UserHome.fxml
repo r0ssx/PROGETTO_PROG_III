@@ -16,3 +16,4 @@
     <Button text="User Register" onAction="#userRegisterClick"/>
     <Button text="Admin Login" onAction="#adminLoginClick"/>
 </VBox>
+

@@ -1,50 +1,60 @@
 package Client.Controllers;
 
-import Client.RequestCommand.AdminLoginRequestCommand;
-import Client.RequestCommand.UserLoginRequestCommand;
-import Client.SingletonStage;
-import Shared.GsonAdapters.AuthPacket;
+import Client.MainApp;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
-/**
- * Controller responsabile della gestione del login degli amministratori.
- * Estende {@link AuthController} e implementa la logica specifica
- * per l'autenticazione degli admin e il cambio scena successivo al login.
- */
-public class AdminLoginController extends AuthController {
+public class AdminLoginController {
+    @FXML
+    public Label errorText;
 
-    /**
-     * Costruttore del controller.
-     * Inizializza il messaggio di errore mostrato in caso di login fallito.
-     */
-    AdminLoginController() {
-        errorMessageString = "L'admin non esiste o la password è errata.";
+    @FXML
+    public TextField usernameField;
+
+    @FXML
+    protected PasswordField passwordField;
+
+    @FXML
+    protected void submitClick() throws IOException {
+        System.out.println("submitClick");
+
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+
+        System.out.println("Username: " + username + " Password: " + password);
+
+        // Passa ad admin home
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("AdminHome.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Stage stage = new Stage();
+        stage.setTitle("User Login");
+        stage.setScene(scene);
+        stage.show();
+
+        // chiude lo stage corrente
+        Stage thisStage = (Stage) usernameField.getScene().getWindow();
+        thisStage.close();
     }
 
-    /**
-     * Esegue l'autenticazione dell'amministratore inviando la richiesta
-     * al server tramite {@link AdminLoginRequestCommand}.
-     * @param authPacket pacchetto contenente le credenziali di autenticazione
-     * @return {@code true} se l'autenticazione va a buon fine, {@code false} altrimenti
-     * @throws SQLException se si verifica un errore di accesso al database
-     * @throws IOException se si verifica un errore di comunicazione
-     */
-    @Override
-    protected Boolean performAuth(AuthPacket authPacket) throws SQLException, IOException {
-        AdminLoginRequestCommand command = new AdminLoginRequestCommand();
-        return command.makeRequest(authPacket);
-    }
+    @FXML
+    protected void backClick() throws IOException {
+        System.out.println("backClick");
 
-    /**
-     * Cambia la scena dell'applicazione dopo un login riuscito,
-     * reindirizzando l'amministratore alla home.
-     * @throws IOException se il caricamento della scena fallisce
-     */
-    @Override
-    protected void changeScene() throws IOException {
-        SingletonStage.fastChangeScene("ListHome.fxml", "Home", new UserHomeController());
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("Home.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Stage stage = new Stage();
+        stage.setTitle("User Login");
+        stage.setScene(scene);
+        stage.show();
 
+        Stage thisStage = (Stage) usernameField.getScene().getWindow();
+        thisStage.close();
     }
 }

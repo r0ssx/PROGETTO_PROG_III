@@ -1,18 +1,12 @@
 package Client;
 
 import Client.RequestCommand.*;
-import Server.QueryCommand.AdminInsertProductCommand;
+import Client.Utilities.SingletonServerFacade;
 import Server.QueryCommand.QueryResultObject.AdminGetSalesQueryResult;
-import Shared.GsonAdapters.RecommendPacket;
-import Shared.GsonAdapters.RequestPacket;
 import Server.QueryCommand.QueryResultObject.ProductQueryResult;
-import Shared.DataIO;
 import Shared.GsonAdapters.AuthPacket;
-import Shared.Requests.Request;
-import com.google.gson.Gson;
 
 import java.io.*;
-import java.net.Socket;
 import java.sql.SQLException;
 import java.util.List;
 

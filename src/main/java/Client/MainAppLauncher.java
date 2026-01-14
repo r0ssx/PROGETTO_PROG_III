@@ -1,8 +1,7 @@
 package Client;
 
+import Client.Utilities.SingletonServerFacade;
 import javafx.application.Application;
-
-import java.io.IOException;
 
 /**
  * Classe di avvio dell'applicazione.

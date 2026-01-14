@@ -1,27 +1,59 @@
 package Client.Controllers;
 
-import Client.RequestCommand.UserLoginRequestCommand;
-import Client.RequestCommand.UserRegisterRequestCommand;
-import Client.SingletonStage;
-import Shared.GsonAdapters.AuthPacket;
+import Client.MainApp;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
-public class UserRegisterController extends AuthController {
+public class UserRegisterController {
+    @FXML
+    public Label errorText;
 
-    UserRegisterController() {
-        errorMessageString = "L'utente già esiste.";
+    @FXML
+    public TextField emailField;
+
+    @FXML
+    protected PasswordField passwordField;
+
+    @FXML
+    protected void submitClick() throws IOException {
+        System.out.println("submitClick");
+
+        String email = emailField.getText();
+        String password = passwordField.getText();
+
+        System.out.println("Email: " + email + " Password: " + password);
+
+        // Passa a User Home
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("UserHome.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Stage stage = new Stage();
+        stage.setTitle("User Login");
+        stage.setScene(scene);
+        stage.show();
+
+        Stage thisStage = (Stage) emailField.getScene().getWindow();
+        thisStage.close();
     }
 
-    @Override
-    protected Boolean performAuth(AuthPacket authPacket) throws SQLException, IOException {
-        UserRegisterRequestCommand command = new UserRegisterRequestCommand();
-        return command.makeRequest(authPacket);
-    }
+    @FXML
+    protected void backClick() throws IOException {
+        System.out.println("backClick");
 
-    @Override
-    protected void changeScene() throws IOException {
-        SingletonStage.fastChangeScene("ListHome.fxml", "Home", new UserHomeController());
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("Home.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Stage stage = new Stage();
+        stage.setTitle("User Login");
+        stage.setScene(scene);
+        stage.show();
+
+        Stage thisStage = (Stage) emailField.getScene().getWindow();
+        thisStage.close();
     }
 }
