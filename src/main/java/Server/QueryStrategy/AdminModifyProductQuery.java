@@ -6,8 +6,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Strategia di query utilizzata dagli amministratori per modificare un prodotto esistente nel database.
+ * Estende {@link AbstractQueryStrategy} e implementa i metodi concreti per
+ * aggiornare i dati di un prodotto e verificare che l'aggiornamento sia avvenuto correttamente.
+ */
 public class AdminModifyProductQuery extends AbstractQueryStrategy<ProductQueryResult, Boolean>{
 
+    /**
+     * Esegue la query SQL per aggiornare i dati di un prodotto esistente.
+     * @param params oggetto {@link ProductQueryResult} contenente i dati aggiornati del prodotto
+     * @return {@link ResultSet} contenente il prodotto aggiornato
+     * @throws SQLException se si verifica un errore durante la preparazione o esecuzione della query
+     */
     @Override
     protected ResultSet concreteQuery(ProductQueryResult params) throws SQLException {
         String query = "UPDATE prodotto\n" +
@@ -35,6 +46,13 @@ public class AdminModifyProductQuery extends AbstractQueryStrategy<ProductQueryR
 
     }
 
+    /**
+     * Converte il {@link ResultSet} ottenuto dalla query in un {@link Boolean}
+     * che indica se il prodotto aggiornato esiste nel database.
+     * @param resultSet {@link ResultSet} contenente il prodotto aggiornato
+     * @return {@code true} se il prodotto esiste nel database dopo l'aggiornamento, {@code false} altrimenti
+     * @throws SQLException se si verifica un errore durante la lettura dei dati dal {@link ResultSet}
+     */
     @Override
     protected Boolean convertResultSet(ResultSet resultSet) throws SQLException {
         Boolean exists = false;

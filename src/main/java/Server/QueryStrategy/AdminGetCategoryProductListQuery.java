@@ -10,8 +10,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Strategia di query per ottenere la lista dei prodotti di una specifica categoria.
+ * Estende {@link AbstractQueryStrategy} e implementa i metodi concreti per
+ * eseguire la query e convertire i risultati in una lista di {@link ProductQueryResult}.
+ */
 public class AdminGetCategoryProductListQuery extends AbstractQueryStrategy<String, List<ProductQueryResult>> {
 
+    /**
+     * Esegue la query SQL per ottenere tutti i prodotti di una determinata categoria.
+     * @param params nome della categoria dei prodotti da recuperare
+     * @return {@link ResultSet} contenente i prodotti della categoria
+     * @throws SQLException se si verifica un errore durante la preparazione o esecuzione della query
+     */
     @Override
     protected ResultSet concreteQuery(String params) throws SQLException {
 
@@ -25,7 +36,12 @@ public class AdminGetCategoryProductListQuery extends AbstractQueryStrategy<Stri
 
     }
 
-
+    /**
+     * Converte il {@link ResultSet} ottenuto dalla query in una lista di {@link ProductQueryResult}.
+     * @param resultSet {@link ResultSet} contenente i dati dei prodotti
+     * @return lista di {@link ProductQueryResult} con i dati dei prodotti
+     * @throws SQLException se si verifica un errore durante la lettura dei dati dal {@link ResultSet}
+     */
     @Override
     protected List<ProductQueryResult> convertResultSet(ResultSet resultSet) throws SQLException {
 
