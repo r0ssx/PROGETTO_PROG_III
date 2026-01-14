@@ -10,17 +10,29 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * A FACADE class that provides easier access to Stage creation.
+ * Facade per la gestione degli {@link Stage} di JavaFX.
+ * Fornisce metodi per creare, mostrare e cambiare scena di uno stage
+ * in modo semplificato, gestendo automaticamente il caricamento dei FXML
+ * e l'associazione dei controller.
  */
 public class StageFacade {
+
+    /**
+     * Stage principale gestito dalla facade.
+     */
     protected final Stage STAGE;
+
+    /**
+     * Loader FXML utilizzato per caricare le scene.
+     */
     protected FXMLLoader loader;
 
     /**
-     * Automatically creates a new Stage ready to be shown.
-     * @param fxmlName the fxml name (without .fxml) of the stage gui file.
-     * @param windowName the new stage window name.
-     * @throws IOException when a fxml with fxmlName name can't be found.
+     * Costruisce uno stage senza controller specifico.
+     *
+     * @param fxmlName  nome del file FXML (senza .fxml) della GUI
+     * @param windowName titolo della finestra
+     * @throws IOException se il file FXML non viene trovato
      */
     public StageFacade(String fxmlName, String windowName) throws IOException {
         System.out.println("Trying to load fxml: " + fxmlName);
@@ -34,11 +46,11 @@ public class StageFacade {
     }
 
     /**
-     * Automatically creates a new Stage ready to be shown after setting a controller for it's handling.
-     * @param fxmlName the fxml name (without .fxml) of the stage gui file.
-     * @param windowName the new stage window name.
-     * @param controller the controller that will be used for fxml handling.
-     * @throws IOException when a fxml with fxmlName can't be found.
+     * Costruisce uno stage e assegna un controller per gestire la GUI.
+     * @param fxmlName  nome del file FXML (senza .fxml) della GUI
+     * @param windowName titolo della finestra
+     * @param controller controller associato allo stage
+     * @throws IOException se il file FXML non viene trovato
      */
     public StageFacade(String fxmlName, String windowName, Controller controller) throws IOException {
         System.out.println("Trying to load fxml: " + fxmlName);
@@ -55,28 +67,36 @@ public class StageFacade {
     }
 
     /**
-     * Shows the stage.
+     * Mostra lo stage sullo schermo.
      */
     public void show() {
         STAGE.show();
     }
 
     /**
-     * Set at runtime a controller for the stage.
-     * @param controller the controller that will be used.
+     * Assegna un controller allo stage a runtime.
+     * @param controller controller da associare allo stage
      */
     public void setController(Controller controller) {
         loader.setController(controller);
     }
 
     /**
-     * Closes the current stage getting its reference from a button in the GUI.
-     * @param button a button in the stage that will be closed.
+     * Chiude lo stage corrente utilizzando un riferimento a un pulsante presente nella GUI.
+     *
+     * @param button pulsante della scena corrente, utile per ottenere lo stage da chiudere
      */
     public static void closeStageFromBtn(Button button) {
         ((Stage) button.getScene().getWindow()).close();
     }
 
+    /**
+     * Cambia la scena dello stage corrente.
+     * @param fxmlName  nome del file FXML della nuova scena
+     * @param windowName titolo della finestra
+     * @param controller controller da associare alla nuova scena
+     * @throws IOException se il file FXML non viene trovato o non può essere caricato
+     */
     public void changeScene(String fxmlName, String windowName, Controller controller) throws IOException {
         loader = new FXMLLoader(MainApp.class.getResource(fxmlName));
 

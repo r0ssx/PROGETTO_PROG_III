@@ -6,10 +6,8 @@ import java.sql.SQLException;
 
 /**
  * Classe SingletonDB.
- *
  * Gestisce la connessione a un database MySQL tramite JDBC
  * utilizzando il pattern Singleton.
- *
  */
 public class SingletonDB {
 
@@ -41,7 +39,6 @@ public class SingletonDB {
 
     /**
      * Restituisce l'istanza unica della classe.
-     *
      * @return istanza di SingletonDB
      */
     public static SingletonDB getInstance() {
@@ -53,7 +50,6 @@ public class SingletonDB {
 
     /**
      * Configura i parametri di connessione al database.
-     *
      * @param URL URL JDBC del database
      * @param user nome utente del database
      * @param password password del database
@@ -66,7 +62,6 @@ public class SingletonDB {
 
     /**
      * Crea una connessione JDBC al database configurato.
-     *
      * @return connessione al database
      * @throws SQLException se la connessione fallisce
      */
