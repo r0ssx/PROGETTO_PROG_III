@@ -22,6 +22,6 @@ public class UserRegisterController extends AuthController {
 
     @Override
     protected void changeScene() throws IOException {
-        SingletonStage.fastChangeScene("UserHome.fxml", "Home", new UserHomeController());
+        SingletonStage.fastChangeScene("ListHome.fxml", "Home", new UserHomeController());
     }
 }

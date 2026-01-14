@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="shoppingLabel" prefHeight="587.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+        <ScrollPane fx:id="tweetsScrollPane" hbarPolicy="NEVER" layoutX="39.0" layoutY="49.0" prefHeight="517.0" prefWidth="595.0">
+         <content>
+                <VBox fx:id="productListVBox" prefHeight="533.0" prefWidth="595.0" />
+         </content>
+        </ScrollPane>
+      <Button fx:id="checkoutButton" layoutX="691.0" layoutY="527.0" mnemonicParsing="false" onAction="#handleCheckout" prefHeight="39.0" prefWidth="82.0" text="Checkout" />
+      <Label layoutX="666.0" layoutY="49.0" text="Shopping">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Label>
+    </children>
+
+</AnchorPane>

@@ -6,6 +6,7 @@ import Client.RequestCommand.AbstractRequestCommand;
 import Client.RequestCommand.GetProductListRequestCommand;
 import Client.RequestCommand.GetRecommendationsCommand;
 import Client.SingletonSession;
+import Client.SingletonStage;
 import Server.QueryCommand.QueryResultObject.ProductQueryResult;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,8 +45,29 @@ public class UserHomeController implements Controller, Initializable {
         System.out.println(productsList);
 
         // converti la lista con un adapter per risolvere un problema di gson
+        List<ProductQueryResult> recommendedConvertedList = TreeMapToProductList.convert(productsList);
+
+        // inserisci ogni elemento della lista in vbox
+        for (int i = 0; i < recommendedConvertedList.size(); i++) {
+            System.out.println(recommendedConvertedList.get(i));
+
+            FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("Product.fxml"));
+            Parent productAnchor;
+            try {
+                productAnchor = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            productListVBox.getChildren().add(productAnchor);
+
+            ProductController controller = loader.getController();
+            controller.setProduct(recommendedConvertedList.get(i));
+        }
+
+        // converti la lista con un adapter per risolvere un problema di gson
         List<ProductQueryResult> convertedList = TreeMapToProductList.convert(productsList);
 
+        // inserisci ogni elemento della lista in vbox
         for (int i = 0; i < convertedList.size(); i++) {
             System.out.println(convertedList.get(i));
 
@@ -62,6 +84,13 @@ public class UserHomeController implements Controller, Initializable {
             controller.setProduct(convertedList.get(i));
         }
     }
+
+    @FXML
+    private void handleCheckout() throws IOException {
+        SingletonStage.fastChangeScene("Auth.fxml", "User Register", new UserRegisterController());
+
+    }
+
 }
 
 

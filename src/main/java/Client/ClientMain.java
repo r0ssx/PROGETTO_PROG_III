@@ -66,20 +66,20 @@ public class ClientMain {
             System.out.println(getreclist);
 
             //Admin insert product
-            ProductQueryResult prodottoNuovo = new ProductQueryResult();
-            prodottoNuovo.nome = "Detergente Viso";
-            prodottoNuovo.quantità_scorta = "3";
-            prodottoNuovo.codice = "DT67891";
-            prodottoNuovo.costo = "15";
-            prodottoNuovo.descrizione = "Detergente Viso per pelli delicate";
-            prodottoNuovo.categoria = "Bellezza";
-            AbstractRequestCommand adminInsertProductRequest = new AdminInsertProductRequestCommand();
-            Boolean insert = (Boolean) adminInsertProductRequest.makeRequest(prodottoNuovo);
-            System.out.println(insert);
+//            ProductQueryResult prodottoNuovo = new ProductQueryResult();
+//            prodottoNuovo.nome = "Detergente Viso";
+//            prodottoNuovo.quantità_scorta = "3";
+//            prodottoNuovo.codice = "DT67891";
+//            prodottoNuovo.costo = "15";
+//            prodottoNuovo.descrizione = "Detergente Viso per pelli delicate";
+//            prodottoNuovo.categoria = "Bellezza";
+//            AbstractRequestCommand adminInsertProductRequest = new AdminInsertProductRequestCommand();
+//            Boolean insert = (Boolean) adminInsertProductRequest.makeRequest(prodottoNuovo);
+//            System.out.println(insert);
 
             //Admin modify product
             ProductQueryResult prodottoNuovo2 = new ProductQueryResult();
-            prodottoNuovo2.nome = "Detergente Viso Idratante";
+            prodottoNuovo2.nome = "Detergente Viso";
             prodottoNuovo2.quantità_scorta = "3";
             prodottoNuovo2.codice = "DT67891";
             prodottoNuovo2.costo = "15";

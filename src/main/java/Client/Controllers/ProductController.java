@@ -33,5 +33,14 @@ public class ProductController implements Controller {
         categoryLabel.setText(product.categoria);
     }
 
-
+    @FXML
+    private void handleAddToCart() {
+        ProductQueryResult newProduct = new ProductQueryResult();
+        newProduct.nome = nameLabel.getText();
+        newProduct.descrizione = descriptionLabel.getText();
+        newProduct.costo = priceLabel.getText();
+        newProduct.codice = inventoryCodeLabel.getText();
+        newProduct.categoria = categoryLabel.getText();
+        CartSingleton.addToCart(newProduct);
+    }
 }

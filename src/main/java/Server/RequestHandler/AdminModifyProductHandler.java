@@ -10,6 +10,7 @@ import Shared.Requests.Request;
 import java.io.IOException;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.sql.SQLWarning;
 
 public class AdminModifyProductHandler extends AbstractRequestHandler{
 
@@ -28,8 +29,15 @@ public class AdminModifyProductHandler extends AbstractRequestHandler{
         DataIO dataIO = new DataIO(socket);
         ProductQueryResult prodotto = dataIO.getData(ProductQueryResult.class);
 
-        AbstractQueryCommand commandCheck = new AdminInsertProductCommand();
-        Boolean productInserted = (Boolean) commandCheck.execute(prodotto);
+        Boolean productInserted;
+        try {
+            AbstractQueryCommand commandCheck = new AdminInsertProductCommand();
+            productInserted = (Boolean) commandCheck.execute(prodotto);
+        }
+        catch (SQLException e) {
+            productInserted = false;
+        }
+
 
         if(productInserted){
             dataIO.sendData(productInserted);
