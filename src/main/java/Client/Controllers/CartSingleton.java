@@ -5,6 +5,7 @@ import Server.QueryCommand.QueryResultObject.ProductQueryResult;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class CartSingleton {
     private static CartSingleton instance;
     private static List<ProductQueryResult> cart;

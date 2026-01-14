@@ -4,7 +4,20 @@ import javafx.application.Application;
 
 import java.io.IOException;
 
+/**
+ * Classe di avvio dell'applicazione.
+ * Configura e connette il {@link SingletonServerFacade} al server
+ * e avvia l'applicazione JavaFX tramite {@link MainApp}.
+ */
 public class MainAppLauncher {
+
+    /**
+     * Punto di ingresso principale dell'applicazione.
+     * Configura la connessione al server sulla macchina locale
+     * e sulla porta 9000, quindi avvia l'applicazione JavaFX.
+     * In caso di errore viene stampato lo stack trace.
+     * @param args argomenti passati da linea di comando
+     */
     public static void main(String[] args) {
         try {
             SingletonServerFacade server = SingletonServerFacade.getInstance();
