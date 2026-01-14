@@ -23,7 +23,7 @@ public class AdminGetSalesQueryResult {
      */
     @Override
     public String toString(){
-        return "Acquistati[ categoria: " + categoria + ", totale_vendite: " + totale_vendite + "]";
+        return "Categoria: " + categoria + ", totale_vendite: " + totale_vendite + "]";
     }
 }
 

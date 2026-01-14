@@ -1,7 +1,7 @@
 package Client.Controllers;
 
-import Client.RequestCommand.AbstractRequestCommand;
 import Client.RequestCommand.AdminInsertProductRequestCommand;
+import Client.RequestCommand.AdminModifyProductRequestCommand;
 import Server.QueryCommand.QueryResultObject.ProductQueryResult;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class InsertProductController {
+public class ModifyProductController {
     @FXML
     public Label welcomeText;
 
@@ -39,16 +39,16 @@ public class InsertProductController {
     public void submitClick() throws SQLException, IOException {
         System.out.println("submitClick");
 
-        ProductQueryResult prodottoNuovo = new ProductQueryResult();
-        prodottoNuovo.nome = nameField.getText();
-        prodottoNuovo.quantità_scorta =  stockField.getText();
-        prodottoNuovo.codice = codeField.getText();
-        prodottoNuovo.costo = priceField.getText();
-        prodottoNuovo.descrizione = descriptionField.getText();
-        prodottoNuovo.categoria = categoryField.getText();
+        ProductQueryResult modifyProduct = new ProductQueryResult();
+        modifyProduct.nome = nameField.getText();
+        modifyProduct.quantità_scorta =  stockField.getText();
+        modifyProduct.codice = codeField.getText();
+        modifyProduct.costo = priceField.getText();
+        modifyProduct.descrizione = descriptionField.getText();
+        modifyProduct.categoria = categoryField.getText();
 
-        AdminInsertProductRequestCommand adminInsertProductRequest = new AdminInsertProductRequestCommand();
-        Boolean insert = (Boolean) adminInsertProductRequest.makeRequest(prodottoNuovo);
+        AdminModifyProductRequestCommand adminInsertProductRequest = new AdminModifyProductRequestCommand();
+        Boolean insert = adminInsertProductRequest.makeRequest(modifyProduct);
 
         System.out.println(insert);
 

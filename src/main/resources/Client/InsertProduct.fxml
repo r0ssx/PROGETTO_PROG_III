@@ -9,7 +9,7 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Label fx:id="welcomeText" prefHeight="17.0" prefWidth="124.0" text="Insert/Modify product" />
+    <Label fx:id="welcomeText" alignment="CENTER" prefHeight="17.0" prefWidth="124.0" text="Insert product" />
     <TextField fx:id="nameField" promptText="Name" />
    <TextField fx:id="stockField" promptText="Stock" />
    <TextField fx:id="codeField" promptText="Inventory Code" />
