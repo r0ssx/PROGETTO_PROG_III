@@ -32,7 +32,6 @@ public class CheckOutHandler extends AbstractRequestHandler{
      * Gestisce concretamente la richiesta di checkout dell'utente.
      * Questo metodo viene invocato solo se la richiesta è riconosciuta
      * come gestibile dall'handler corrente.
-     *
      * @param request la richiesta {@link Request#USER_CHECKOUT} da elaborare
      * @param socket
      */

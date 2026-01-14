@@ -12,9 +12,8 @@ import java.sql.SQLException;
 
 /**
  * Thread del server che gestisce la comunicazione con un singolo client.
- *
- * Utilizza la classe {@link DataIO} per l'invio e la ricezione dei dati
- * tramite socket.
+ * Utilizza la classe {@link DataIO} per inviare e ricevere dati tramite socket,
+ * e instrada le richieste dei client tramite {@link RequestCoRFacade}.
  */
 public class ServerThread extends Thread {
 
@@ -24,8 +23,7 @@ public class ServerThread extends Thread {
     private Socket socket = null;
 
     /**
-     * Costruttore della classe ServerThread.
-     *
+     * Costruisce un nuovo thread per gestire un client specifico.
      * @param socket la socket di comunicazione con il client
      */
     public ServerThread(Socket socket){
@@ -34,8 +32,7 @@ public class ServerThread extends Thread {
 
     /**
      * Invia un oggetto al client tramite la socket.
-     *
-     * @param data oggetto da inviare
+     * @param data oggetto da inviare al client
      * @throws IOException se si verifica un errore di I/O durante l'invio
      */
     public void sendData(Object data) throws IOException {
@@ -44,9 +41,8 @@ public class ServerThread extends Thread {
     }
 
     /**
-     * Riceve una stringa JSON dal client tramite la socket.
-     *
-     * @return la stringa letta dalla socket
+     * Riceve dati dal client tramite la socket.
+     * @return la stringa letta dal client
      * @throws IOException se si verifica un errore di I/O durante la lettura
      */
     public String getData() throws IOException {
@@ -57,8 +53,9 @@ public class ServerThread extends Thread {
     }
 
     /**
-     * Metodo eseguito dal thread.
-     * Continua a leggere dati dal client finché la comunicazione è attiva.
+     * Metodo principale eseguito dal thread.
+     * Continua a leggere dati dal client finché la connessione è attiva,
+     * instradando ogni richiesta al {@link RequestCoRFacade}.
      */
     @Override
     public void run(){
@@ -74,8 +71,12 @@ public class ServerThread extends Thread {
 
     /**
      * Effettua una lettura continua dei dati provenienti dal client.
-     *
-     * @return true se la lettura ha successo, false in caso di errore
+     * Legge una richiesta JSON dal client, la converte in {@link RequestPacket},
+     * estrae il tipo di {@link Request} e la gestisce tramite il
+     * {@link RequestCoRFacade}.
+     * @return true se la lettura e l'elaborazione hanno successo, false in caso di errore
+     * @throws SQLException se si verifica un errore durante l'esecuzione della query
+     * @throws IOException  se si verifica un errore di I/O durante la lettura o scrittura
      */
     private boolean serverInfiniteRead() throws SQLException, IOException {
         String readData;
