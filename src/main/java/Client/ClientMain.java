@@ -1,6 +1,7 @@
 package Client;
 
 import Client.RequestCommand.*;
+import Server.QueryCommand.AdminInsertProductCommand;
 import Server.QueryCommand.QueryResultObject.AdminGetSalesQueryResult;
 import Shared.GsonAdapters.RecommendPacket;
 import Shared.GsonAdapters.RequestPacket;
@@ -63,6 +64,19 @@ public class ClientMain {
             AbstractRequestCommand getRecommendations = new GetRecommendationsCommand();
             List<ProductQueryResult> getreclist = (List<ProductQueryResult>) getRecommendations.makeRequest("federica.deamicis@mail.com");
             System.out.println(getreclist);
+
+            //Admin insert product
+            ProductQueryResult prodottoNuovo = new ProductQueryResult();
+            prodottoNuovo.nome = "Detergente Viso";
+            prodottoNuovo.quantità_scorta = "3";
+            prodottoNuovo.codice = "DT67891";
+            prodottoNuovo.costo = "15";
+            prodottoNuovo.descrizione = "Detergente Viso per pelli delicate";
+            prodottoNuovo.categoria = "Bellezza";
+            AbstractRequestCommand adminInsertProductRequest = new AdminInsertProductRequestCommand();
+            Boolean insert = (Boolean) adminInsertProductRequest.makeRequest(prodottoNuovo);
+            System.out.println(insert);
+
 
             //chiudo la connessione
             server.disconnect();
