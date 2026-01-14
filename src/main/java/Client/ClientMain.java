@@ -77,6 +77,18 @@ public class ClientMain {
             Boolean insert = (Boolean) adminInsertProductRequest.makeRequest(prodottoNuovo);
             System.out.println(insert);
 
+            //Admin modify product
+            ProductQueryResult prodottoNuovo2 = new ProductQueryResult();
+            prodottoNuovo2.nome = "Detergente Viso Idratante";
+            prodottoNuovo2.quantità_scorta = "3";
+            prodottoNuovo2.codice = "DT67891";
+            prodottoNuovo2.costo = "15";
+            prodottoNuovo2.descrizione = "Detergente Viso per pelli delicate";
+            prodottoNuovo2.categoria = "Bellezza";
+            AbstractRequestCommand adminModify= new AdminModifyProductRequestCommand();
+            Boolean modify = (Boolean) adminModify.makeRequest(prodottoNuovo2);
+            System.out.println(modify);
+
 
             //chiudo la connessione
             server.disconnect();
