@@ -1,13 +1,12 @@
 package Client.Adapters;
 
 import Server.QueryCommand.QueryResultObject.AdminGetSalesQueryResult;
-import Server.QueryCommand.QueryResultObject.ProductQueryResult;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TreeMapToGetSalesResult {
+public class TreeMapToSalesResult {
     public static List<AdminGetSalesQueryResult> convert(List<AdminGetSalesQueryResult> rawList) {
         Gson gson = new Gson();
 

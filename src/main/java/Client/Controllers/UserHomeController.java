@@ -1,8 +1,13 @@
 package Client.Controllers;
 
+import Client.Adapters.TreeMapToProductList;
 import Client.MainApp;
+import Client.RequestCommand.AbstractRequestCommand;
+import Client.RequestCommand.GetProductListRequestCommand;
+import Client.RequestCommand.GetRecommendationsCommand;
 import Client.Utilities.CartSingleton;
 import Client.Utilities.ProductCell;
+import Client.Utilities.SingletonSession;
 import Server.QueryCommand.QueryResultObject.ProductQueryResult;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +19,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -42,48 +48,32 @@ public class UserHomeController implements Initializable {
         CartSingleton cartSingleton = CartSingleton.getInstance();
 
         listView.setCellFactory(listView -> new ProductCell());
+
+        // Inizializza liste per raccomandazioni e prodotti normali
+        List<ProductQueryResult> recommendedList = new ArrayList<>();
         List<ProductQueryResult> productList = new ArrayList<>();
-        ProductQueryResult newProduct = new ProductQueryResult();
 
-        newProduct.nome = "Detergente Viso";
-        newProduct.quantità_scorta = "3";
-        newProduct.codice = "DT67891";
-        newProduct.costo = "15";
-        newProduct.descrizione = "Detergente Viso per pelli delicate";
-        newProduct.categoria = "Bellezza";
+        // Inizializza liste per prodotti "raw"
+        List<ProductQueryResult> getreclist;
+        List<ProductQueryResult> getprodlist;
 
-        productList.add(newProduct);
+        GetRecommendationsCommand getRecommendations = new GetRecommendationsCommand();
+        GetProductListRequestCommand getProductRequest = new GetProductListRequestCommand();
 
-        ProductQueryResult newProduct2 = new ProductQueryResult();
-        newProduct2.nome = "Detergente Intimo";
-        newProduct2.quantità_scorta = "3";
-        newProduct2.codice = "DT678D1";
-        newProduct2.costo = "1";
-        newProduct2.descrizione = "Detergente intimo per intimo delicato";
-        newProduct2.categoria = "Bellezza";
+        // get recommendations and products raw lists
+        try {
+            getreclist = (List<ProductQueryResult>) getRecommendations.makeRequest(SingletonSession.getInstance().getSessionUser());
+            getprodlist = (List<ProductQueryResult>) getProductRequest.makeRequest(null);
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
 
-        productList.add(newProduct2);
+        // Converti con adapter i prodotti da raw a oggetti
+        recommendedList = TreeMapToProductList.convert(getreclist);
+        productList = TreeMapToProductList.convert(getprodlist);
 
-        ProductQueryResult newProduct23 = new ProductQueryResult();
-        newProduct23.nome = "Detergente";
-        newProduct23.quantità_scorta = "3";
-        newProduct23.codice = "DT678D1sfs";
-        newProduct23.costo = "154";
-        newProduct23.descrizione = "delicato";
-        newProduct23.categoria = "Bellezza";
-
-        productList.add(newProduct23);
-
-        ProductQueryResult newProduct4 = new ProductQueryResult();
-        newProduct4.nome = "Intimo";
-        newProduct4.quantità_scorta = "3";
-        newProduct4.codice = "DTddsaa678D1";
-        newProduct4.costo = "9999";
-        newProduct4.descrizione = "intimo per intimo delicato";
-        newProduct4.categoria = "Bellezza";
-
-        productList.add(newProduct4);
-
+        // Popola la listview con i prodotti ottenuti dal server
+        listView.getItems().addAll(recommendedList);
         listView.getItems().addAll(productList);
     }
 }

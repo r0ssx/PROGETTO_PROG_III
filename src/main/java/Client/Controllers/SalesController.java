@@ -1,15 +1,12 @@
 package Client.Controllers;
 
-import Client.Adapters.TreeMapToGetSalesResult;
+import Client.Adapters.TreeMapToSalesResult;
 import Client.RequestCommand.AbstractRequestCommand;
 import Client.RequestCommand.AdminGetSalesRequestCommand;
-import Client.RequestCommand.AdminGetTopSaleRequestCommand;
 import Server.QueryCommand.QueryResultObject.AdminGetSalesQueryResult;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -45,7 +42,7 @@ public class SalesController implements Initializable {
         }
         System.out.println(adminGetSalesresult);
 
-        List<AdminGetSalesQueryResult> sales = TreeMapToGetSalesResult.convert(adminGetSalesresult);
+        List<AdminGetSalesQueryResult> sales = TreeMapToSalesResult.convert(adminGetSalesresult);
 
         for (AdminGetSalesQueryResult sale : sales) {
             listView.getItems().add(sale.toString());

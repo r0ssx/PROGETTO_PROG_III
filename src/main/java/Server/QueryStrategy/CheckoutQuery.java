@@ -31,10 +31,11 @@ public class CheckoutQuery extends AbstractQueryStrategy <CartPacket, String> {
         String query = "INSERT INTO Acquistato (data, quantità_acquistata, metodo_pagamento, IDordine, email, codice, IDcarrello)\n" +
                 "VALUES (?, ? , ?, ?, ?, ?, ?)";
 
-        PreparedStatement statement = connection.prepareStatement(query);
         int i = 0;
+        PreparedStatement statement = connection.prepareStatement(query);
         for (String codiceProdotto : params.codici_prodotto) {
             String idOrdine = UUID.randomUUID().toString();
+            System.out.println("Id ordine: " + idOrdine);
 
             statement.setObject(1, dateTime);
             statement.setString(2, params.quantità_acquistata.get(i++));
@@ -43,9 +44,8 @@ public class CheckoutQuery extends AbstractQueryStrategy <CartPacket, String> {
             statement.setString(5, params.email);
             statement.setString(6, codiceProdotto);
             statement.setString(7, idCarrello);
+            statement.executeUpdate();
         }
-
-        statement.executeUpdate();
 
         return null;
     }

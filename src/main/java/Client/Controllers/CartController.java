@@ -1,10 +1,14 @@
 package Client.Controllers;
 
+import Client.Adapters.ProductListToCartPacketAdapter;
 import Client.MainApp;
+import Client.RequestCommand.CheckoutRequestCommand;
 import Client.Utilities.CartSingleton;
 import Client.Utilities.ProductCell;
 import Client.Utilities.ProductInCartCell;
+import Client.Utilities.SingletonSession;
 import Server.QueryCommand.QueryResultObject.ProductQueryResult;
+import Shared.GsonAdapters.CartPacket;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +19,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -33,8 +38,17 @@ public class CartController implements Initializable {
     }
 
     @FXML
-    public void cashPaymentClick() throws IOException {
+    public void cashPaymentClick() throws IOException, SQLException {
         System.out.println("cashPaymentClick");
+
+        // "esegui il pagamento" (insert come "contanti")
+        CheckoutRequestCommand checkoutRequestCommand = new CheckoutRequestCommand();
+        CartPacket cartPacket = ProductListToCartPacketAdapter.convert(CartSingleton.getCart());
+        cartPacket.email = SingletonSession.getInstance().getSessionUser();
+        cartPacket.metodo_pagamento = "Contanti";
+
+        String orderId = checkoutRequestCommand.makeRequest(cartPacket);
+        System.out.println("Order id:" + orderId);
 
         // Svuota il carrello e torna alla home
         CartSingleton.flushCart();
