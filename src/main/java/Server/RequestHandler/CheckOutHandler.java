@@ -1,8 +1,14 @@
 package Server.RequestHandler;
 
+import Server.QueryCommand.AbstractQueryCommand;
+import Server.QueryCommand.CheckoutCommand;
+import Shared.DataIO;
+import Shared.GsonAdapters.CartPacket;
 import Shared.Requests.Request;
 
+import java.io.IOException;
 import java.net.Socket;
+import java.sql.SQLException;
 
 /**
  * Handler concreto della Chain of Responsibility responsabile
@@ -11,14 +17,14 @@ import java.net.Socket;
  * effettuate da un utente, includendo la conferma dell'ordine
  * e le operazioni finali di acquisto.
  */
-public class UserCheckOutHandler extends AbstractRequestHandler{
+public class CheckOutHandler extends AbstractRequestHandler{
 
     /**
      * Costruisce un {@code UserCheckOutHandler} associato
      * al tipo di richiesta specificato.
      * @param request il tipo di {@link Request} che questo handler è in grado di gestire
      */
-    public UserCheckOutHandler(Request request) {
+    public CheckOutHandler(Request request) {
         super(request);
     }
 
@@ -31,7 +37,14 @@ public class UserCheckOutHandler extends AbstractRequestHandler{
      * @param socket
      */
     @Override
-    public void handleRequest(Request request, Socket socket) {
-        System.out.println("chiamata handleRequest di UserCheckoutHandler");
+    public void handleRequest(Request request, Socket socket) throws IOException, SQLException {
+        System.out.println("chiamata handleRequest di CheckoutHandler");
+        DataIO dataIO = new DataIO(socket);
+        CartPacket packet = dataIO.getData(CartPacket.class);
+
+        AbstractQueryCommand query = new CheckoutCommand();
+        String codiceCarrello = (String) query.execute(packet);
+
+        dataIO.sendData(codiceCarrello);
     }
 }

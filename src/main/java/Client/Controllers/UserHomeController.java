@@ -27,13 +27,15 @@ public class UserHomeController implements Controller, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // crea command e lista per ottenere le raccomandazioni
         AbstractRequestCommand<String, List<ProductQueryResult>> getRecommendationsCommand = new GetRecommendationsCommand();
         List<ProductQueryResult> recommendedList;
 
+        // crea command e lista per ottenere tutti i prodotti
         AbstractRequestCommand<Void, List<ProductQueryResult>> getProducts = new GetProductListRequestCommand();
         List<ProductQueryResult> productsList;
 
-        // ottieni prodotti e raccomandazioni dell'utente loggato
+        // ottieni effettivamente prodotti e raccomandazioni dell'utente loggato
         try {
             recommendedList = getRecommendationsCommand.makeRequest(SingletonSession.getInstance().getSessionUser());
             productsList = getProducts.makeRequest(null);
@@ -41,6 +43,7 @@ public class UserHomeController implements Controller, Initializable {
             throw new RuntimeException(e);
         }
 
+        // stampa check
         System.out.println(recommendedList);
         System.out.println(productsList);
 
