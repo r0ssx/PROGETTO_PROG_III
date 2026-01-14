@@ -1,6 +1,10 @@
 package Client.Controllers;
 
 import Client.MainApp;
+import Client.RequestCommand.UserLoginRequestCommand;
+import Client.RequestCommand.UserRegisterRequestCommand;
+import Client.Utilities.SingletonSession;
+import Shared.GsonAdapters.AuthPacket;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class UserLoginController {
     @FXML
@@ -22,7 +27,7 @@ public class UserLoginController {
     protected PasswordField passwordField;
 
     @FXML
-    protected void submitClick() throws IOException {
+    protected void submitClick() throws IOException, SQLException {
         System.out.println("submitClick");
 
         String email = emailField.getText();
@@ -30,11 +35,30 @@ public class UserLoginController {
 
         System.out.println("Email: " + email + " Password: " + password);
 
+        if (email.isEmpty() || password.isEmpty()) {
+            errorText.setText("Email or password cannot be empty!");
+            return;
+        }
+
+        // USER REGISTER SERVER OPERATION
+
+        UserLoginRequestCommand userRegisterRequestCommand = new UserLoginRequestCommand();
+        Boolean result = userRegisterRequestCommand.makeRequest(new AuthPacket(email, password));
+
+        // se result false allora password o nome utente sbagliati
+        if (!result) {
+            errorText.setText("Password or email are wrong.");
+            return;
+        }
+
+        // imposta la sessione
+        SingletonSession.getInstance().setSessionUser(email);
+
         // Passa a User Home
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("UserHome.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 620, 640);
         Stage stage = new Stage();
-        stage.setTitle("User Login");
+        stage.setTitle("Shopping");
         stage.setScene(scene);
         stage.show();
 
@@ -49,7 +73,7 @@ public class UserLoginController {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("Home.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         Stage stage = new Stage();
-        stage.setTitle("User Login");
+        stage.setTitle("Home");
         stage.setScene(scene);
         stage.show();
 

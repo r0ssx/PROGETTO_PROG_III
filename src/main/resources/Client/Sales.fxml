@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="453.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controllers.SalesController">
+   <children>
+      <Button layoutX="147.0" layoutY="408.0" mnemonicParsing="false" onAction="#backClick" text="Back" />
+      <Label layoutX="135.0" layoutY="26.0" text="Top Sales" />
+      <ListView fx:id="listView" layoutX="9.0" layoutY="55.0" prefHeight="326.0" prefWidth="317.0" />
+   </children>
+</AnchorPane>

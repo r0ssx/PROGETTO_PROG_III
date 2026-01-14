@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -41,7 +42,7 @@ public class HomeController {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("UserRegister.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         Stage stage = new Stage();
-        stage.setTitle("User Login");
+        stage.setTitle("User Register");
         stage.setScene(scene);
         stage.show();
 
@@ -58,7 +59,7 @@ public class HomeController {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("AdminLogin.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         Stage stage = new Stage();
-        stage.setTitle("User Login");
+        stage.setTitle("Admin Login");
         stage.setScene(scene);
         stage.show();
 

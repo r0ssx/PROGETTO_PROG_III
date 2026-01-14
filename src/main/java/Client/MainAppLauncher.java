@@ -1,6 +1,7 @@
 package Client;
 
 import Client.Utilities.SingletonServerFacade;
+import Client.Utilities.SingletonSession;
 import javafx.application.Application;
 
 /**
@@ -20,6 +21,7 @@ public class MainAppLauncher {
     public static void main(String[] args) {
         try {
             SingletonServerFacade server = SingletonServerFacade.getInstance();
+            SingletonSession session = SingletonSession.getInstance();
             server.config("localhost", 9000);
             server.connect();
             Application.launch(MainApp.class, args);

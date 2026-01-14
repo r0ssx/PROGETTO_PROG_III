@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane prefHeight="165.0" prefWidth="468.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controllers.ProductController">
+   <children>
+      <Button layoutX="343.0" layoutY="94.0" mnemonicParsing="false" onAction="#addToCartClick" prefHeight="55.0" prefWidth="107.0" text="ADD TO CART" />
+      <Label fx:id="priceLabel" alignment="BOTTOM_RIGHT" layoutX="328.0" layoutY="39.0" prefHeight="55.0" prefWidth="122.0" text="00.00" textAlignment="RIGHT">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Separator layoutX="25.0" layoutY="149.0" prefHeight="4.0" prefWidth="414.0" />
+      <Label fx:id="nameLabel" layoutX="25.0" layoutY="13.0" prefHeight="36.0" prefWidth="334.0" text="Name">
+         <font>
+            <Font name="System Bold Italic" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="inventoryLabel" alignment="CENTER_RIGHT" layoutX="362.0" layoutY="14.0" prefHeight="17.0" prefWidth="88.0" text="1NV3N70RY" />
+      <Label fx:id="descriptionLabel" alignment="TOP_LEFT" layoutX="25.0" layoutY="55.0" prefHeight="55.0" prefWidth="289.0" text="Description" />
+      <Separator layoutX="25.0" layoutY="49.0" prefWidth="200.0" />
+      <Separator layoutX="25.0" layoutY="122.0" prefWidth="200.0" />
+      <Label fx:id="categoryLabel" alignment="BOTTOM_LEFT" layoutX="25.0" layoutY="132.0" prefHeight="17.0" prefWidth="186.0" text="Category" />
+   </children>
+</AnchorPane>

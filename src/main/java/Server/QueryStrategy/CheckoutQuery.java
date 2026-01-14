@@ -32,11 +32,12 @@ public class CheckoutQuery extends AbstractQueryStrategy <CartPacket, String> {
                 "VALUES (?, ? , ?, ?, ?, ?, ?)";
 
         PreparedStatement statement = connection.prepareStatement(query);
+        int i = 0;
         for (String codiceProdotto : params.codici_prodotto) {
             String idOrdine = UUID.randomUUID().toString();
 
             statement.setObject(1, dateTime);
-            statement.setString(2, params.quantità_acquistata);
+            statement.setString(2, params.quantità_acquistata.get(i++));
             statement.setString(3, params.metodo_pagamento);
             statement.setString(4, idOrdine);
             statement.setString(5, params.email);

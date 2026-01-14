@@ -35,6 +35,13 @@ public class AdminHomeController {
     protected void salesClick() throws IOException {
         System.out.println("salesClick");
 
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("Sales.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 440);
+        Stage stage = new Stage();
+        stage.setTitle("Top Sales");
+        stage.setScene(scene);
+        stage.show();
+
     }
 
     @FXML

@@ -22,6 +22,12 @@ public class CartSingleton {
     }
 
     public static void addToCart(ProductQueryResult product) {
+        System.out.println("Inserendo nel carrello" + product.codice + "...");
+        int index = cart.indexOf(product);
+        if (index != -1) {
+            return;
+        }
+        System.out.println("Inserito!");
         cart.add(product);
     }
 
