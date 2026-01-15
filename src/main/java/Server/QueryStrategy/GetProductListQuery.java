@@ -26,7 +26,6 @@ public class GetProductListQuery extends AbstractQueryStrategy<Void, List<Produc
     protected ResultSet concreteQuery(Void params) throws SQLException {
 
         String query = "SELECT * From Prodotto";
-
         Statement statement = connection.createStatement();
 
         ResultSet resultSet = statement.executeQuery(query);

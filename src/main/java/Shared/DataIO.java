@@ -64,8 +64,6 @@ public class DataIO {
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         DataInputStream dataInputStream = new DataInputStream(inputStream);
 
-
-
         //legge dalla socket e la ritorna
         String recv = dataInputStream.readUTF();
         return recv;

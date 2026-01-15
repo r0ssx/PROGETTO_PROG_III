@@ -14,10 +14,28 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Controller JavaFX per la schermata principale dell'area amministratore.
+ *
+ * Gestisce le azioni dell'utente sui pulsanti della home admin e apre
+ * le relative finestre (vendite, raccomandazioni, inserimento e modifica prodotti).
+ */
 public class AdminHomeController {
+
+    /**
+     * Etichetta mostrata nella schermata principale.
+     */
     @FXML
     private Label welcomeText;
 
+    /**
+     * Gestisce il click sul pulsante delle vendite per categoria.
+     *
+     * Apre una nuova finestra che mostra la schermata del numero totale di
+     * vendite per categoria.
+     *
+     * @throws IOException se il file FXML non può essere caricato
+     */
     @FXML
     protected void salesClick() throws IOException {
         System.out.println("salesClick");
@@ -31,6 +49,14 @@ public class AdminHomeController {
 
     }
 
+    /**
+     * Gestisce il click sul pulsante di raccomandazione.
+     *
+     * Apre una nuova finestra per la gestione delle raccomandazioni
+     * senza chiudere lo stage corrente.
+     *
+     * @throws IOException se il file FXML non può essere caricato
+     */
     @FXML
     protected void recommendClick() throws IOException {
         System.out.println("recommendClick");
@@ -44,6 +70,14 @@ public class AdminHomeController {
         stage.show();
     }
 
+    /**
+     * Gestisce il click sul pulsante di inserimento prodotto.
+     *
+     * Apre una nuova finestra per l'inserimento di un prodotto
+     * senza chiudere lo stage corrente.
+     *
+     * @throws IOException se il file FXML non può essere caricato
+     */
     @FXML
     public void insertClick() throws IOException {
         System.out.println("insertClick");
@@ -57,6 +91,14 @@ public class AdminHomeController {
         stage.show();
     }
 
+    /**
+     * Gestisce il click sul pulsante di modifica prodotto.
+     *
+     * Apre una nuova finestra per la modifica di un prodotto
+     * senza chiudere lo stage corrente.
+     *
+     * @throws IOException se il file FXML non può essere caricato
+     */
     @FXML
     public void modifyClick() throws IOException {
         System.out.println("modifyClick");

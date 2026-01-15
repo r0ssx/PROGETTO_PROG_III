@@ -16,16 +16,43 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * Controller JavaFX per la schermata di login dell'amministratore.
+ *
+ * Gestisce l'autenticazione admin, la validazione dei campi di input,
+ * l'invio della richiesta di login al server e la transizione
+ * verso la schermata principale dell'area amministratore.
+ */
 public class AdminLoginController {
+    /**
+     * Etichetta utilizzata per mostrare messaggi di errore all'utente.
+     */
     @FXML
     public Label errorText;
 
+    /**
+     * Campo di input per l'inserimento dello username.
+     */
     @FXML
     public TextField usernameField;
 
+    /**
+     * Campo di input per l'inserimento della password.
+     */
     @FXML
     protected PasswordField passwordField;
 
+    /**
+     * Gestisce il click sul pulsante di submit del login admin.
+     *
+     * Recupera le credenziali inserite, valida i campi,
+     * invia la richiesta di autenticazione al server e,
+     * in caso di successo, inizializza la sessione e apre
+     * la schermata di home admin.
+     *
+     * @throws IOException se il file FXML non può essere caricato
+     * @throws SQLException se si verifica un errore durante la richiesta al server
+     */
     @FXML
     protected void submitClick() throws IOException, SQLException {
         System.out.println("submitClick");
@@ -67,6 +94,14 @@ public class AdminLoginController {
         thisStage.close();
     }
 
+    /**
+     * Gestisce il click sul pulsante di ritorno alla schermata home.
+     *
+     * Apre la schermata principale dell'applicazione e chiude
+     * lo stage corrente.
+     *
+     * @throws IOException se il file FXML non può essere caricato
+     */
     @FXML
     protected void backClick() throws IOException {
         System.out.println("backClick");

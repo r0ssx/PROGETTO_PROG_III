@@ -40,6 +40,7 @@ public class AdminLoginHandler extends AbstractRequestHandler{
     public void handleRequest(Request request, Socket socket) throws SQLException, IOException {
         System.out.println("chiamata handleRequest di AdminLoginHandler");
         AbstractQueryCommand queryCommand = new AdminLoginCommand();
+
         DataIO dataIO = new DataIO(socket);
         String readData = dataIO.getRawData();
         Gson gson = new Gson();

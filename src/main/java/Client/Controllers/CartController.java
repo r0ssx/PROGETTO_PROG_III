@@ -23,10 +23,28 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller JavaFX per la schermata del carrello.
+ *
+ * Si occupa dell'inizializzazione della lista dei prodotti nel carrello
+ * e della gestione delle azioni di pagamento e navigazione.
+ */
 public class CartController implements Initializable {
+    /**
+     * ListView che visualizza i prodotti presenti nel carrello.
+     */
     @FXML
     public ListView<ProductQueryResult> listView;
 
+    /**
+     * Inizializza il controller.
+     *
+     * Imposta il cell factory per la visualizzazione dei prodotti nel carrello
+     * e popola la lista con i prodotti presenti nel {@code CartSingleton}.
+     *
+     * @param url posizione utilizzata per risolvere i percorsi relativi, può essere null
+     * @param resourceBundle risorse utilizzate per localizzazione, può essere null
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         listView.setCellFactory(listView -> new ProductInCartCell());
@@ -37,6 +55,15 @@ public class CartController implements Initializable {
         listView.getItems().addAll(cart);
     }
 
+    /**
+     * Gestisce il pagamento in contanti.
+     *
+     * Invia la richiesta di checkout al server specificando il metodo di pagamento
+     * come contanti, svuota il carrello e reindirizza l'utente alla home.
+     *
+     * @throws IOException se il file FXML non può essere caricato
+     * @throws SQLException se si verifica un errore durante la richiesta di checkout
+     */
     @FXML
     public void cashPaymentClick() throws IOException, SQLException {
         System.out.println("cashPaymentClick");
@@ -64,6 +91,14 @@ public class CartController implements Initializable {
         thisStage.close();
     }
 
+    /**
+     * Gestisce il pagamento con carta o bancomat.
+     *
+     * Apre la schermata di pagamento dedicata e chiude
+     * lo stage corrente del carrello.
+     *
+     * @throws IOException se il file FXML non può essere caricato
+     */
     @FXML
     public void cardPaymentClick() throws IOException {
         // passa al pagamento con carta o bancomat
@@ -79,6 +114,14 @@ public class CartController implements Initializable {
 
     }
 
+    /**
+     * Gestisce il ritorno alla schermata home utente.
+     *
+     * Apre la schermata principale dello shopping e chiude
+     * lo stage corrente del carrello.
+     *
+     * @throws IOException se il file FXML non può essere caricato
+     */
     @FXML
     public void backClick() throws IOException {
         // Torna al carrello
