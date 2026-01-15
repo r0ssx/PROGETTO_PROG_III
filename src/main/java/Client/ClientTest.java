@@ -10,7 +10,7 @@ import java.io.*;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ClientMain {
+public class ClientTest {
     public static void main(String[] args) throws SQLException {
         try {
             // Inizializza il server

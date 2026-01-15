@@ -11,11 +11,35 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Command per gestire le raccomandazioni dell'amministratore.
+ *
+ * Estende {@link AbstractQueryCommand} e prende in input un {@link RecommendPacket}.
+ * Esegue il processo di selezione di un prodotto da raccomandare in base
+ * alla categoria preferita dell'utente e registra la raccomandazione nel database.
+ */
 public class AdminRecommendsCommand extends AbstractQueryCommand<RecommendPacket, Void>{
 
+    /**
+     * Costruttore che può generare {@link SQLException} se ci sono problemi di connessione.
+     *
+     * @throws SQLException se si verifica un errore nella configurazione della connessione
+     */
     public AdminRecommendsCommand() throws SQLException {
     }
 
+    /**
+     * Esegue il comando di raccomandazione.
+     *
+     * 1. Ottiene la categoria più acquistata dall'utente.
+     * 2. Recupera la lista dei prodotti di quella categoria.
+     * 3. Seleziona un prodotto casuale dalla lista.
+     * 4. Inserisce la raccomandazione nel database.
+     *
+     * @param params pacchetto {@link RecommendPacket} contenente email e nome utente
+     * @return sempre null
+     * @throws SQLException se si verifica un errore durante le query sul database
+     */
     @Override
     public Void execute(RecommendPacket params) throws SQLException {
 
