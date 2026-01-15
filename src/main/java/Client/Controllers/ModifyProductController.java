@@ -13,6 +13,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * Controller JavaFX per la schermata di modifica di un prodotto esistente.
+ *
+ * Gestisce l'acquisizione dei dati dal form, l'invio della richiesta di modifica
+ * al server e la chiusura dello stage corrente.
+ */
 public class ModifyProductController {
     @FXML
     public Label welcomeText;
@@ -35,6 +41,15 @@ public class ModifyProductController {
     @FXML
     public TextField categoryField;
 
+    /**
+     * Gestisce il click sul pulsante di submit per la modifica prodotto.
+     *
+     * Crea un oggetto {@link ProductQueryResult} con i dati aggiornati,
+     * invia la richiesta di modifica al server e chiude lo stage corrente.
+     *
+     * @throws SQLException se si verifica un errore durante la modifica sul database
+     * @throws IOException se si verifica un errore durante la comunicazione con il server
+     */
     @FXML
     public void submitClick() throws SQLException, IOException {
         System.out.println("submitClick");
@@ -56,6 +71,11 @@ public class ModifyProductController {
         thisStage.close();
     }
 
+    /**
+     * Gestisce il click sul pulsante di ritorno.
+     *
+     * Chiude lo stage corrente senza salvare le modifiche apportate.
+     */
     @FXML
     public void backClick() {
         System.out.println("backClick");

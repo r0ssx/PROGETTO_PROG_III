@@ -24,10 +24,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller JavaFX per la schermata home dell'utente.
+ *
+ * Gestisce la visualizzazione dei prodotti e delle raccomandazioni
+ * nella {@link #listView}, l'inizializzazione del carrello tramite
+ * {@link CartSingleton} e l'accesso alla schermata di checkout.
+ */
 public class UserHomeController implements Initializable {
     @FXML
     public ListView<ProductQueryResult> listView;
 
+    /**
+     * Gestisce il click sul pulsante di checkout.
+     *
+     * Apre la schermata del carrello e chiude lo stage corrente.
+     *
+     * @throws IOException se il file FXML del carrello non può essere caricato
+     */
     @FXML
     public void checkoutClick() throws IOException {
         // Apre il carrello
@@ -42,6 +56,16 @@ public class UserHomeController implements Initializable {
         thisStage.close();
     }
 
+    /**
+     * Inizializza il controller.
+     *
+     * Recupera i prodotti raccomandati e la lista completa dei prodotti dal server,
+     * converte i risultati grezzi in oggetti tipizzati tramite {@link TreeMapToProductList},
+     * inizializza la cell factory della {@link #listView} e popola la lista.
+     *
+     * @param url posizione utilizzata per risolvere i percorsi relativi, può essere null
+     * @param resourceBundle risorse utilizzate per la localizzazione, può essere null
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // inizializza il carrello

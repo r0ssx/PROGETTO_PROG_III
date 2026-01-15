@@ -13,6 +13,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * Controller JavaFX per la schermata di inserimento di un nuovo prodotto.
+ *
+ * Gestisce l'acquisizione dei dati dal form, l'invio della richiesta di inserimento
+ * al server e la chiusura dello stage corrente.
+ */
 public class InsertProductController {
     @FXML
     public Label welcomeText;
@@ -35,6 +41,15 @@ public class InsertProductController {
     @FXML
     public TextField categoryField;
 
+    /**
+     * Gestisce il click sul pulsante di submit per l'inserimento prodotto.
+     *
+     * Crea un oggetto {@link ProductQueryResult} con i dati inseriti,
+     * invia la richiesta di inserimento al server e chiude lo stage corrente.
+     *
+     * @throws SQLException se si verifica un errore durante l'inserimento sul database
+     * @throws IOException se si verifica un errore durante la comunicazione con il server
+     */
     @FXML
     public void submitClick() throws SQLException, IOException {
         System.out.println("submitClick");
@@ -56,6 +71,11 @@ public class InsertProductController {
         thisStage.close();
     }
 
+    /**
+     * Gestisce il click sul pulsante di ritorno.
+     *
+     * Chiude lo stage corrente senza salvare i dati inseriti.
+     */
     @FXML
     public void backClick() {
         System.out.println("backClick");

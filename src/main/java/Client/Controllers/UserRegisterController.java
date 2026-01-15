@@ -15,6 +15,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * Controller JavaFX per la schermata di registrazione utente.
+ *
+ * Gestisce la creazione di un nuovo account utente, la validazione dei campi,
+ * l'invio della richiesta di registrazione al server e la navigazione verso la home utente.
+ */
 public class UserRegisterController {
     @FXML
     public Label errorText;
@@ -25,6 +31,17 @@ public class UserRegisterController {
     @FXML
     protected PasswordField passwordField;
 
+    /**
+     * Gestisce il click sul pulsante di submit per la registrazione utente.
+     *
+     * Recupera le credenziali inserite, valida i campi,
+     * invia la richiesta di registrazione al server e,
+     * in caso di successo, inizializza la sessione e apre
+     * la schermata home dell'utente.
+     *
+     * @throws IOException se il file FXML non può essere caricato
+     * @throws SQLException se si verifica un errore durante la richiesta al server
+     */
     @FXML
     protected void submitClick() throws IOException, SQLException {
         System.out.println("submitClick");
@@ -65,6 +82,13 @@ public class UserRegisterController {
         thisStage.close();
     }
 
+    /**
+     * Gestisce il click sul pulsante di ritorno.
+     *
+     * Apre la schermata home principale e chiude lo stage corrente.
+     *
+     * @throws IOException se il file FXML non può essere caricato
+     */
     @FXML
     protected void backClick() throws IOException {
         System.out.println("backClick");

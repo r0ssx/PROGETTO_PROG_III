@@ -13,10 +13,23 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Controller JavaFX per la schermata principale dell'applicazione.
+ *
+ * Gestisce la navigazione verso le schermate di login e registrazione
+ * sia per gli utenti normali sia per gli amministratori.
+ */
 public class HomeController {
     @FXML
     private Label welcomeText;
 
+    /**
+     * Gestisce il click sul pulsante di login utente.
+     *
+     * Apre la schermata di login utente e chiude lo stage corrente.
+     *
+     * @throws IOException se il file FXML non può essere caricato
+     */
     @FXML
     protected void userLoginClick() throws IOException {
         System.out.println("userLoginClicked");
@@ -34,6 +47,13 @@ public class HomeController {
         thisStage.close();
     }
 
+    /**
+     * Gestisce il click sul pulsante di registrazione utente.
+     *
+     * Apre la schermata di registrazione utente e chiude lo stage corrente.
+     *
+     * @throws IOException se il file FXML non può essere caricato
+     */
     @FXML
     protected void userRegisterClick() throws IOException {
         System.out.println("userRegisterClick");
@@ -51,6 +71,13 @@ public class HomeController {
         thisStage.close();
     }
 
+    /**
+     * Gestisce il click sul pulsante di login amministratore.
+     *
+     * Apre la schermata di login admin e chiude lo stage corrente.
+     *
+     * @throws IOException se il file FXML non può essere caricato
+     */
     @FXML
     protected void adminLoginClick() throws IOException {
         System.out.println("adminLoginClick");

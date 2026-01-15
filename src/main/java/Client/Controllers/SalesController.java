@@ -15,10 +15,21 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller JavaFX per la schermata delle vendite (Sales).
+ *
+ * Si occupa di recuperare i dati di vendita dal server, popolare
+ * la lista delle vendite e gestire la navigazione di ritorno.
+ */
 public class SalesController implements Initializable {
     @FXML
     public ListView<String> listView;
 
+    /**
+     * Gestisce il click sul pulsante di ritorno.
+     *
+     * Chiude lo stage corrente della schermata vendite.
+     */
     @FXML
     public void backClick() {
         System.out.println("backClick");
@@ -27,6 +38,15 @@ public class SalesController implements Initializable {
         thisStage.close();
     }
 
+    /**
+     * Inizializza il controller.
+     *
+     * Recupera le informazioni sulle vendite tramite {@link AdminGetSalesRequestCommand},
+     * converte i risultati in oggetti tipizzati e popola la {@link #listView}.
+     *
+     * @param url posizione utilizzata per risolvere i percorsi relativi, può essere null
+     * @param resourceBundle risorse utilizzate per la localizzazione, può essere null
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("initialize");
