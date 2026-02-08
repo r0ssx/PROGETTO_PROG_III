@@ -22,7 +22,7 @@ public class MainAppLauncher {
         try {
             SingletonServerFacade server = SingletonServerFacade.getInstance();
             SingletonSession session = SingletonSession.getInstance();
-            server.config("localhost", 9000);
+            server.config("localhost", 9001);
             server.connect();
             Application.launch(MainApp.class, args);
         }

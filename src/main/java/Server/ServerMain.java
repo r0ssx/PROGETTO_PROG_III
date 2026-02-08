@@ -36,7 +36,7 @@ public class ServerMain {
 
         try {
             // Crea una ServerSocket sulla porta 9000
-            serverSocket = new ServerSocket(9000);
+            serverSocket = new ServerSocket(9001);
             System.out.println("Waiting for client connection...");
 
             // Loop infinito per accettare connessioni dai client
