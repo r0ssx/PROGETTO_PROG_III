@@ -23,7 +23,7 @@ public class GetRecommendationQuery extends AbstractQueryStrategy<String, List<P
      */
     @Override
     protected ResultSet concreteQuery(String params) throws SQLException {
-        String query = "SELECT nome, quantità_scorta, prodotto.codice, costo, descrizione, categoria FROM prodotto join raccomanda ON prodotto.codice where email = ?";
+        String query = "SELECT nome, quantità_scorta, prodotto.codice, costo, descrizione, categoria FROM prodotto join raccomanda ON prodotto.codice = raccomanda.codice where email = ?";
 
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, params);
